@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Goo_Goo_Mornind</string>
+    <string name="add_Alerm">新增鬧鐘</string>
+    <string name="add_time">06:00</string>
 </resources>

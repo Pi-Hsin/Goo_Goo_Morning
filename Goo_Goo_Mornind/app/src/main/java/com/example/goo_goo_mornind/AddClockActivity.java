@@ -45,23 +45,35 @@ public class AddClockActivity extends AppCompatActivity {
 
 
 
-    public void onToggleClicked(View view) {
-        if (((ToggleButton) view).isChecked()) {
+    public void onSettingClicked(View view) {
+        //if (((ToggleButton) view).isChecked()) {
             Log.d("MyActivity", "Alarm On");
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
             calendar.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
             Intent myIntent = new Intent(AddClockActivity.this, AlarmReceiver.class);
 
-
-
             pendingIntent = PendingIntent.getBroadcast(AddClockActivity.this, 0, myIntent, 0);
             alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
-        } else {
-            alarmManager.cancel(pendingIntent);
-            Log.d("MyActivity", "Alarm Off");
-        }
+
+            Intent intent = new Intent();
+            intent.setClass(this , MainActivity.class);
+            startActivity(intent);
+
+        //} else {
+        //    alarmManager.cancel(pendingIntent);
+        //    Log.d("MyActivity", "Alarm Off");
+        //}
     }
+
+    public void onCancelClicked(View view) {
+        //alarmManager.cancel(pendingIntent);
+        //Log.d("MyActivity", "Alarm Off");
+        Intent intent = new Intent();
+        intent.setClass(this , MainActivity.class);
+        startActivity(intent);
+    }
+
     public void changeToRingingScreen() {
         Intent alarmRinging = new Intent(AddClockActivity.this, RingStopActivity.class);
         startActivity(alarmRinging);

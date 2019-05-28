@@ -7,31 +7,41 @@
     tools:context=".AddClockActivity">
 
     <TimePicker
+        android:id="@+id/alarmTimePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/alarmTimePicker"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
 
-    <ToggleButton
+    <Button
+        android:id="@+id/alarmToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alarm On/Off"
-        android:id="@+id/alarmToggle"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/alarmTimePicker"
-        android:onClick="onToggleClicked" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onSettingClicked"
+        android:text="設定鬧鐘" />
+
+    <Button
+        android:id="@+id/alarmToggle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/alarmToggle"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:onClick="onCancelClicked"
+        android:text="取消設定" />
 
     <TextView
+        android:id="@+id/alarmText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/alarmText"
+        android:layout_below="@+id/alarmToggle"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/alarmToggle" />
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

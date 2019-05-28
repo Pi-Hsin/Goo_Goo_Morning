@@ -1,5 +1,6 @@
 package com.example.goo_goo_mornind;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,10 +31,14 @@ public class MainActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+
     }
 
     //新增鬧鐘
     public void addAlerm(View view){
-
+        Intent intent = new Intent();
+        intent.setClass(this , AddClockActivity.class);
+        startActivity(intent);
     }
 }

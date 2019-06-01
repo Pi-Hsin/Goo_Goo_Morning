@@ -31,7 +31,7 @@
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         android:contentDescription="@string/add_Alerm"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/alarmbg_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

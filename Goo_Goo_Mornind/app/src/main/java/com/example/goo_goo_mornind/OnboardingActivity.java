@@ -1,6 +1,7 @@
 package com.example.goo_goo_mornind;
 
 import android.animation.ArgbEvaluator;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.Fragment;
@@ -91,6 +92,8 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
         switch (v.getId()) {
             case R.id.mTextSkip:
                 finish();
+                Intent intent = new Intent(OnboardingActivity.this, MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.mTextNext:
                 int position = mViewPager.getCurrentItem();
@@ -98,6 +101,8 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
                     mViewPager.setCurrentItem(position + 1);
                 } else {
                     finish();
+                    Intent intent2 = new Intent(OnboardingActivity.this, MainActivity.class);
+                    startActivity(intent2);
                 }
                 break;
         }

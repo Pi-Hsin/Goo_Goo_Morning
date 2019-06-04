@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,11 +16,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
-        public ImageButton imageButton;
+        public Button Button;
         public ViewHolder(View v) {
             super(v);
             mTextView = (TextView) v.findViewById(R.id.textView);
-            imageButton = (ImageButton) v.findViewById(R.id.imageButton);
+            Button = (Button) v.findViewById(R.id.button);
             // 點擊項目時
             mTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -30,7 +31,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             });
 
             // 點擊項目中的Button時
-            imageButton.setOnClickListener(new View.OnClickListener() {
+            Button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     // 按下Button要做的事，可以開關鬧鐘

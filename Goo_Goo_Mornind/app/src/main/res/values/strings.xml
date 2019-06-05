@@ -2,4 +2,12 @@
     <string name="app_name">Goo Goo Morning</string>
     <string name="add_Alerm">新增鬧鐘</string>
     <string name="add_time">06:00</string>
+
+    <string name="hello">Hello World, EX06_10</string>
+    <string name="str_button1">設定鬧鐘</string>
+    <string name="str_button2">刪除鬧鐘</string>
+    <string name="str_default">__ : __</string>
+    <string name="str_text1">開始時間</string>
+    <string name="str_text2">重複響起的鬧鐘</string>
+    <string name="str_text3">秒</string>
 </resources>

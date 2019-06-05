@@ -104,6 +104,7 @@ public class VoiceActivity extends AppCompatActivity {
                 imageView_answerBackground.setVisibility(View.VISIBLE);
                 textView_speech.setVisibility(View.VISIBLE);
                 ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                textView_speech.setText(result.get(0).replace(" ", ""));
                 textView_speech.setText(result.get(0));
 
                 // 比對題目跟語音轉文字是否相同

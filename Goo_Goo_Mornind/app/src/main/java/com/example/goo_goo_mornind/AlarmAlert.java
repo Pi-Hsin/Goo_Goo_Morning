@@ -1,13 +1,10 @@
-package com.example.myapplication2;
+package com.example.goo_goo_mornind;
 
 
 
 import android.app.Activity;
-
 import android.app.AlertDialog;
-
 import android.content.DialogInterface;
-
 import android.os.Bundle;
 import android.os.Vibrator;
 

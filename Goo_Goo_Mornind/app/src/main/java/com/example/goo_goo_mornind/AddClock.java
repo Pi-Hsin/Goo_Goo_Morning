@@ -1,4 +1,4 @@
-package com.example.myapplication2;
+package com.example.goo_goo_mornind;
 /**
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -184,6 +184,7 @@ import android.content.SharedPreferences;
 
 import android.os.Bundle;
 
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
 import android.view.LayoutInflater;
@@ -203,7 +204,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 
-
 public class AddClock extends AppCompatActivity {
 
     TextView setTime1;
@@ -221,7 +221,7 @@ public class AddClock extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_clock);
 
         //取得活動的Preferences物件
         SharedPreferences settings = getPreferences(Activity.MODE_PRIVATE);
@@ -247,7 +247,7 @@ public class AddClock extends AppCompatActivity {
                 int mHour=c.get(Calendar.HOUR_OF_DAY);
                 int mMinute=c.get(Calendar.MINUTE);
 
-                new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                new TimePickerDialog(AddClock.this, new TimePickerDialog.OnTimeSetListener() {
                             public void onTimeSet(TimePicker view,int hourOfDay, int minute)
                             {
                                 c.setTimeInMillis(System.currentTimeMillis());
@@ -256,9 +256,9 @@ public class AddClock extends AppCompatActivity {
                                 c.set(Calendar.SECOND,0);
                                 c.set(Calendar.MILLISECOND,0);
 
-                                Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                                Intent intent = new Intent(AddClock.this, CallAlarm.class);
                                 PendingIntent sender=PendingIntent.getBroadcast(
-                                        MainActivity.this,0, intent, 0);
+                                        AddClock.this,0, intent, 0);
                                 AlarmManager am;
                                 am = (AlarmManager)getSystemService(ALARM_SERVICE);
                                 am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender
@@ -275,7 +275,7 @@ public class AddClock extends AppCompatActivity {
                                 editor.commit();
 
 
-                                Toast.makeText(MainActivity.this,"設定Goo Time為"+tmpS,
+                                Toast.makeText(AddClock.this,"設定Goo Time為"+tmpS,
                                         Toast.LENGTH_SHORT)
                                         .show();
                             }
@@ -292,13 +292,13 @@ public class AddClock extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                Intent intent = new Intent(AddClock.this, CallAlarm.class);
                 PendingIntent sender=PendingIntent.getBroadcast(
-                        MainActivity.this,0, intent, 0);
+                        AddClock.this,0, intent, 0);
                 AlarmManager am;
                 am =(AlarmManager)getSystemService(ALARM_SERVICE);
                 am.cancel(sender);
-                Toast.makeText(MainActivity.this,"Goo Time 刪除",
+                Toast.makeText(AddClock.this,"Goo Time 刪除",
                         Toast.LENGTH_SHORT).show();
                 setTime1.setText("__ : __");
 
@@ -314,14 +314,14 @@ public class AddClock extends AppCompatActivity {
 
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
-            builder = new AlertDialog.Builder(MainActivity.this)
+            builder = new AlertDialog.Builder(AddClock.this)
                     .setIcon(R.drawable.clock)
                     .setTitle("Goo提示:")
                     .setMessage("您是否要退出Goo Goo Morning!!!")
                     .setPositiveButton("確定",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    MainActivity.this.finish();
+                                    AddClock.this.finish();
                                 }
                             })
                     .setNegativeButton("取消",

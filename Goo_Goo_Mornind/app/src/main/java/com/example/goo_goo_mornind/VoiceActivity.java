@@ -22,6 +22,7 @@ public class VoiceActivity extends AppCompatActivity {
     private ArrayList<String> voiceGame_List;
     private ImageView imageView_cockatoo;
     private TextView textView_repeatMe;
+    private ImageView imageView_rightOrError;
     private ImageView imageView_answerBackground;
     private TextView textView_speech;
     private ImageView imageView_cockatooAnswer;
@@ -40,6 +41,7 @@ public class VoiceActivity extends AppCompatActivity {
         imageView_cockatoo = findViewById(R.id.imageView_cockatoo);
         textView_repeatMe = findViewById(R.id.textView_repeatMe);
         textView_question = findViewById(R.id.textView_question);
+        imageView_rightOrError = findViewById(R.id.imageView_rightOrError);
         imageView_answerBackground = findViewById(R.id.imageView_answerBackground);
         textView_speech = findViewById(R.id.textView_speech);
         imageView_cockatooAnswer = findViewById(R.id.imageView_cockatooAnswer);
@@ -53,6 +55,7 @@ public class VoiceActivity extends AppCompatActivity {
         imageView_answerBackground.setVisibility(View.INVISIBLE);
         textView_speech.setVisibility(View.INVISIBLE);
         imageView_cockatooAnswer.setVisibility(View.INVISIBLE);
+        imageView_rightOrError.setVisibility(View.INVISIBLE);
         imageView_cockatooAnswerBackground.setVisibility(View.INVISIBLE);
         textView_goodmorning.setVisibility(View.INVISIBLE);
         imageView_closeButton.setVisibility(View.INVISIBLE);
@@ -105,14 +108,19 @@ public class VoiceActivity extends AppCompatActivity {
                 textView_speech.setVisibility(View.VISIBLE);
                 ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 textView_speech.setText(result.get(0).replace(" ", ""));
-                textView_speech.setText(result.get(0));
+
 
                 // 比對題目跟語音轉文字是否相同
                 if(textView_question.getText().equals(textView_speech.getText())){
                     // 答對鳥圖、對話框出現
+                    imageView_rightOrError.setVisibility(View.VISIBLE);
                     imageView_cockatooAnswer.setVisibility(View.VISIBLE);
                     imageView_cockatooAnswerBackground.setVisibility(View.VISIBLE);
                     textView_goodmorning.setVisibility(View.VISIBLE);
+                    // 出現打勾小圖示
+                    String uri_right = "@drawable/check"; //圖片路徑和名稱
+                    int imageResource_right = getResources().getIdentifier(uri_right, null, getPackageName()); //取得圖片Resource位子
+                    imageView_rightOrError.setImageResource(imageResource_right);
                     // 麥克風icon、提示字消失
                     imageView_microphone.setVisibility(View.INVISIBLE);
                     textView_hint.setVisibility(View.INVISIBLE);
@@ -121,10 +129,16 @@ public class VoiceActivity extends AppCompatActivity {
                 } else {
                     // 原本鳥圖變憤怒鳥圖
                     String uri = "@drawable/cockatoo_f"; //圖片路徑和名稱
+                    String uri_error = "@drawable/cross"; //圖片路徑和名稱
                     int imageResource = getResources().getIdentifier(uri, null, getPackageName()); //取得圖片Resource位子
+                    int imageResource_error = getResources().getIdentifier(uri_error, null, getPackageName()); //取得圖片Resource位子
                     imageView_cockatoo.setImageResource(imageResource);
+                    // 出現錯誤小圖示
+                    imageView_rightOrError.setImageResource(imageResource_error);
                     // 重新出題目
+                    imageView_rightOrError.setVisibility(View.VISIBLE);
                     textView_repeatMe.setText("Try again!");
+                    textView_repeatMe.setTextColor(android.graphics.Color.RED);
                     randomNow = r.nextInt(voiceGame_List.size());
                     textView_question.setText(voiceGame_List.get(randomNow));
                     voiceGame_List.remove(randomNow);

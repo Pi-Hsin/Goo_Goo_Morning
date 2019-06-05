@@ -236,6 +236,9 @@ public class AddClock extends AppCompatActivity {
                                 c.set(Calendar.SECOND,0);
                                 c.set(Calendar.MILLISECOND,0);
 
+                                String tmpS=format(hourOfDay)+":"+format(minute);
+                                setTime1.setText(tmpS);
+/**
                                 Intent intent = new Intent(AddClock.this, CallAlarm.class);
                                 PendingIntent sender=PendingIntent.getBroadcast(
                                         AddClock.this,0, intent, 0);
@@ -258,6 +261,7 @@ public class AddClock extends AppCompatActivity {
                                 Toast.makeText(AddClock.this,"設定Goo Time為"+tmpS,
                                         Toast.LENGTH_SHORT)
                                         .show();
+ **/
                             }
                         },mHour,mMinute,true).show();
             }
@@ -326,7 +330,33 @@ public class AddClock extends AppCompatActivity {
     }
 
     public void save_onclick(View view) {
-        
+
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int min = c.get(Calendar.MINUTE);
+
+        Intent intent = new Intent(AddClock.this, CallAlarm.class);
+        PendingIntent sender=PendingIntent.getBroadcast(
+                AddClock.this,0, intent, 0);
+        AlarmManager am;
+        am = (AlarmManager)getSystemService(ALARM_SERVICE);
+        am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender
+
+        );
+
+
+        String tmpS=format(hour)+":"+format(min);
+        setTime1.setText(tmpS);
+
+        //SharedPreferences儲存資料,並提交
+        SharedPreferences time1Share = getPreferences(0);
+        SharedPreferences.Editor editor = time1Share.edit();
+        editor.putString("TIME1", tmpS);
+        editor.commit();
+
+
+        Toast.makeText(AddClock.this,"設定Goo Time為"+tmpS,
+                Toast.LENGTH_SHORT)
+                .show();
     }
 }
 

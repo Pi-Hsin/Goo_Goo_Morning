@@ -44,9 +44,14 @@ public class MainActivity extends AppCompatActivity {
     //新增鬧鐘
     public void addAlerm(View view){
         Intent intent = new Intent();
-        intent.setClass(this , AddClockActivity.class);
+        intent.setClass(this , AddClock.class);
         startActivity(intent);
     }
-
+    //導覽頁
+    public void question(View view){
+        Intent intent = new Intent();
+        intent.setClass(this , OnboardingActivity.class);
+        startActivity(intent);
+    }
 
 }

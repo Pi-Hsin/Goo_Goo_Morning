@@ -20,18 +20,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ggmname" />
 
-    <ImageView
+    <Button
         android:id="@+id/imageView_setting"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
+        android:background="@drawable/rnd"
+        android:onClick="question"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toEndOf="@+id/imageView_appName"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/introset" />
+        app:srcCompat="@drawable/rnd" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -65,19 +67,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.953" />
-
-    <ImageView
-        android:id="@+id/imageView_setting2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toEndOf="@+id/imageView_appName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/introset" />
 
 
 </android.support.constraint.ConstraintLayout>

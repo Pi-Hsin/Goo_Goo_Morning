@@ -47,16 +47,16 @@
             android:gravity="center_vertical|left"
             android:text="12333"
             android:textColor="@drawable/white"
-            android:textSize="50sp" />
+            android:textSize="70sp" />
 
         <ImageView
             android:id="@+id/cockatoo"
-            android:layout_width="45dip"
-            android:layout_height="45dip"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
             android:layout_below="@+id/iv_ggmname"
             android:layout_alignParentRight="true"
             android:layout_marginTop="24dp"
-            android:layout_marginRight="32dp"
+            android:layout_marginRight="40dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/cockatoo" />
 
@@ -84,7 +84,7 @@
             android:gravity="center_vertical|left"
             android:text="12333"
             android:textColor="@drawable/white"
-            android:textSize="70sp" />
+            android:textSize="90sp" />
 
 
         <TextView
@@ -92,8 +92,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/game_tv_empty"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="24dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:text="時間"
@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/game_tv_empty"
             android:layout_centerInParent="true"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:layout_marginBottom="8dp"
             android:textSize="36sp"
             android:textStyle="bold"
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/game_tv_empty"
             android:layout_centerInParent="true"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:layout_marginBottom="8dp"
             android:textSize="32sp"
             android:text="@string/str_button1"
@@ -140,7 +140,7 @@
             android:layout_height="40dp"
             android:layout_below="@+id/game_tv_empty"
             android:layout_toRightOf="@id/mButton1"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="56dp"
             android:layout_marginLeft="20dp"
             android:text="@string/str_button2"
             android:textColor="@drawable/black"
@@ -159,11 +159,26 @@
             android:layout_height="25dp"
             android:background="@drawable/toggle_button_selector"/>
 
+        <TextView
+            android:id="@+id/game_tv_emp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/game_tv_empt"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/white"
+            android:gravity="center_vertical|left"
+            android:text="12333"
+            android:textColor="@drawable/white"
+            android:textSize="90sp" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/savebtn"
-            android:layout_below="@+id/game_tv_empt"
+            android:layout_below="@+id/game_tv_emp"
             android:onClick="save_onclick"
             />
 

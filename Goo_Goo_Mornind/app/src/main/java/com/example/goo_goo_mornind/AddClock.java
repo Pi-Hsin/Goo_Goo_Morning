@@ -343,7 +343,6 @@ public class AddClock extends AppCompatActivity {
 
         );
 
-
         String tmpS=format(hour)+":"+format(min);
         setTime1.setText(tmpS);
 

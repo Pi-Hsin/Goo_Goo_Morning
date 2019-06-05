@@ -13,6 +13,7 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<String> mData;
+    private String mtime;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -40,8 +41,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public MyAdapter(List<String> data) {
+    public MyAdapter(List<String> data,String time) {
         mData = data;
+        mtime=time;
     }
 
     @Override
@@ -55,7 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         //顯示鬧鐘時間
-        holder.mTextView.setText(mData.get(position));
+        holder.mTextView.setText(mtime);
 
     }
 

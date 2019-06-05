@@ -25,19 +25,17 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String time = intent.getStringExtra("alarm_clock");
-        TextView result = (TextView) findViewById(R.id.mAdapter);
-        result.setText(time);
 
 
 
 
         //預設有3個鬧鐘，之後再看怎們儲存值
         ArrayList<String> myDataset = new ArrayList<>();
-        for(int i = 0; i < 3; i++){
-            myDataset.add(Integer.toString(i));
+        //for(int i = 0; i < 3; i++){
+        //    myDataset.add(Integer.toString(i));
 
-        }
-        mAdapter = new MyAdapter(myDataset);
+       // }
+        mAdapter = new MyAdapter(myDataset,time);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         button=(Button)findViewById(R.id.button);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);

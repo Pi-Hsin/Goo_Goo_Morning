@@ -1,4 +1,4 @@
-package com.example.myapplication2;
+package com.example.goo_goo_mornind;
 
 import android.content.Context;
 

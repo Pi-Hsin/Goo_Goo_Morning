@@ -302,13 +302,14 @@ public class AddClock extends AppCompatActivity {
                     .setIcon(R.drawable.clock)
                     .setTitle("Goo提示:")
                     .setMessage("您是否要退出Goo Goo Morning!!!")
-                    .setPositiveButton("確定",
+                    .setPositiveButton("取消",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    AddClock.this.finish();
+                                    //AddClock.this.finish();
+                                    builder.dismiss();
                                 }
                             })
-                    .setNegativeButton("取消",
+                    .setNegativeButton("還是取消",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     builder.dismiss();
@@ -361,6 +362,13 @@ public class AddClock extends AppCompatActivity {
         Toast.makeText(AddClock.this,"設定Goo Time為"+tmpS,
                 Toast.LENGTH_SHORT)
                 .show();
+    }
+
+    //回到主畫面
+    public void back_to_main_iv(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this , MainActivity.class);
+        startActivity(intent);
     }
 }
 

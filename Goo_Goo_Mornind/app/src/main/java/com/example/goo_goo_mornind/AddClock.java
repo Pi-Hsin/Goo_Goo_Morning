@@ -335,6 +335,7 @@ public class AddClock extends AppCompatActivity {
         int min = c.get(Calendar.MINUTE);
 
         Intent intent = new Intent(AddClock.this, CallAlarm.class);
+
         PendingIntent sender=PendingIntent.getBroadcast(
                 AddClock.this,0, intent, 0);
         AlarmManager am;
@@ -345,6 +346,10 @@ public class AddClock extends AppCompatActivity {
 
         String tmpS=format(hour)+":"+format(min);
         setTime1.setText(tmpS);
+
+        Intent intent2 = new Intent(AddClock.this, MainActivity.class);
+        intent2.putExtra("alarm_clock",tmpS);
+        startActivity(intent2);
 
         //SharedPreferences儲存資料,並提交
         SharedPreferences time1Share = getPreferences(0);

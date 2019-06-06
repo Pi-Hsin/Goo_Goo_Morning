@@ -7,6 +7,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,18 +20,20 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
     private Sensor accelerometer;
     private static final float SHAKE_THRESHOLD_GRAVITY = 2.7F;
     private static final int SHAKE_SLOP_TIME_MS = 500;
-    private static final int SHAKE_COUNT_RESET_TIME_MS = 3000;
+    private static final int SHAKE_COUNT_RESET_TIME_MS = 4000;
 
     private long mShakeTimestamp;
     private int mShakeCount;
-    private String[] mQ={"100/10= ? ","30*3/5/2= ? ","10-7+3-5= ? ","55/(6+5)= ? ","100/(2*5) = ?","91/(2+3+2)= ? ","log10+10 = ? ","121/(6+5)= ?","43-38+5 = ?","111/3-30= ? "};
-    private String[] mA={"10","9","1","5","10","13","11","11","10","7"};
+    private String[] mQ={"100/10-7= ? ","30*3/10-5= ? ","10-7+3-5+1= ? ","55/(6+5)= ? ","100/(2*5)-7 = ?","91/(2+3+2)-10= ? ","log10+10-8 = ? ","121/(6+5)-7= ?","43-38+5-8= ?","111/3-30-2= ? "};
+    private String[] mA={"3","4","2","5","3","3","3","4","2","5"};
     private TextView mAnswer;
     private TextView mQuention;
     private TextView mX;
     private TextView mY;
     private TextView mZ;
     private String mCorrect;
+    private ImageView iv;
+    private ImageView ivb;//imageView_closeButton
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,9 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
         int mNumber=ran.nextInt(10)+1;
         mQuention.setText("Quention:\n"+mQ[mNumber]);
         mCorrect=mA[mNumber];
+        iv = (ImageView)findViewById(R.id.Owl_shake_ImgV);
+        ivb = (ImageView)findViewById(R.id.imageView_closeButton);
+        ivb.setVisibility(View.INVISIBLE);
 
         mAnswer.setText("0");//Please Shake your phone reply answer
         mSensorMgr = (SensorManager)getSystemService(SENSOR_SERVICE);
@@ -54,10 +61,10 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
                 , 0f          // 開始角度
                 , -45f        // 結束角度
         );
-        ani.setRepeatCount(ObjectAnimator.INFINITE);
-        ani.setRepeatMode(ObjectAnimator.REVERSE);
-        ani.setDuration(1000);  // 動畫時間
-        ani.start();
+        //ani.setRepeatCount(ObjectAnimator.INFINITE);
+        //ani.setRepeatMode(ObjectAnimator.REVERSE);
+        //ani.setDuration(1000);  // 動畫時間
+        //ani.start();
 
     }
 
@@ -97,6 +104,14 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
                 mShakeTimestamp = now;
                 mShakeCount++;
 
+                if( mShakeCount%2 ==1)
+                {
+                    iv.setImageDrawable(getResources().getDrawable(R.drawable.owl_say));
+                }
+                else {
+                    iv.setImageDrawable(getResources().getDrawable(R.drawable.owl_q));
+                }
+
                 //Toast.makeText(this, "shake:" +String.valueOf(mShakeCount), Toast.LENGTH_SHORT).show();
 
                 if(String.valueOf(mShakeCount) != mCorrect)
@@ -107,6 +122,8 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
                 if (mShakeCount == Integer.valueOf(mCorrect))
                 {
                     Toast.makeText(this,"You are correct!!!!",Toast.LENGTH_LONG).show();
+                    mShakeCount=0;
+                    ivb.setVisibility(View.VISIBLE);
                 }
             }
         }

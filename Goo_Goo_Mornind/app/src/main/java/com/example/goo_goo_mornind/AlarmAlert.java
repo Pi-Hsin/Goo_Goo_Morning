@@ -5,6 +5,7 @@ package com.example.goo_goo_mornind;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.ToggleButton;
@@ -28,7 +29,12 @@ public class AlarmAlert extends Activity {
         //startVibrator();
         //}//震動
 
-        startVibrator();
+        //startVibrator();
+        Intent intent2 = new Intent(AlarmAlert.this, VoiceActivity.class);
+        intent2.putExtra("alarm_clock","12:22");
+        startActivity(intent2);
+
+/*
 
         new AlertDialog.Builder(AlarmAlert.this)
                 .setIcon(R.drawable.clock)
@@ -49,7 +55,7 @@ public class AlarmAlert extends Activity {
                         })
 
                 .show();
-
+*/
     }
 
     private void startVibrator() {

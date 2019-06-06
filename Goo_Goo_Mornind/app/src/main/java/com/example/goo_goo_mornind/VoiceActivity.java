@@ -1,7 +1,10 @@
 package com.example.goo_goo_mornind;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,14 +33,18 @@ public class VoiceActivity extends AppCompatActivity {
     private TextView textView_goodmorning;
     private ImageView imageView_microphone;
     private TextView textView_hint;
-    private ImageView imageView_closeButton;
+    private Button button_closeButton;
+    private TextView textView_time;
+    private Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_voice);
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         // find view
+        textView_time = findViewById(R.id.textView_alarmTime);
         imageView_cockatoo = findViewById(R.id.imageView_cockatoo);
         textView_repeatMe = findViewById(R.id.textView_repeatMe);
         textView_question = findViewById(R.id.textView_question);
@@ -49,7 +56,7 @@ public class VoiceActivity extends AppCompatActivity {
         textView_goodmorning = findViewById(R.id.textView_goodmorning);
         imageView_microphone = findViewById(R.id.imageView_microphone);
         textView_hint = findViewById(R.id.textView_hint);
-        imageView_closeButton = findViewById(R.id.imageView_closeButton);
+        button_closeButton = findViewById(R.id.button_closeButton);
 
         // 一開始先不顯示回答的對話框、答對的鳥、對話框、關掉按鈕
         imageView_answerBackground.setVisibility(View.INVISIBLE);
@@ -58,8 +65,15 @@ public class VoiceActivity extends AppCompatActivity {
         imageView_rightOrError.setVisibility(View.INVISIBLE);
         imageView_cockatooAnswerBackground.setVisibility(View.INVISIBLE);
         textView_goodmorning.setVisibility(View.INVISIBLE);
-        imageView_closeButton.setVisibility(View.INVISIBLE);
+        button_closeButton.setVisibility(View.INVISIBLE);
 
+        //接收值
+        Intent intent = getIntent();
+        String time = intent.getStringExtra("alarm_clock");
+        textView_time.setText(time);
+        Toast.makeText(VoiceActivity.this,"設定Goo Time為"+time,
+                Toast.LENGTH_SHORT)
+                .show();
         // initialize question
         String[] tmpArray = {
                 "我在天上飛",
@@ -85,6 +99,30 @@ public class VoiceActivity extends AppCompatActivity {
         randomNow = r.nextInt(voiceGame_List.size());
         textView_question.setText(voiceGame_List.get(randomNow));
         voiceGame_List.remove(randomNow);
+
+
+        //關掉鬧鐘
+        button_closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VoiceActivity.this, CallAlarm.class);
+                PendingIntent sender=PendingIntent.getBroadcast(
+                        VoiceActivity.this,0, intent, 0);
+                AlarmManager am;
+                am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                am.cancel(sender);
+                Toast.makeText(VoiceActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+
+                VoiceActivity.this.finish();
+                Intent intent2 = new Intent();
+                intent2.setClass(VoiceActivity.this , MainActivity.class);
+                startActivity(intent2);
+                }
+
+
+
+
+        });
     }
 
     public void speech_onClick(View view) {
@@ -97,6 +135,7 @@ public class VoiceActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Intent problem", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode,Intent data){
@@ -125,7 +164,7 @@ public class VoiceActivity extends AppCompatActivity {
                     imageView_microphone.setVisibility(View.INVISIBLE);
                     textView_hint.setVisibility(View.INVISIBLE);
                     // 關掉按鈕出現
-                    imageView_closeButton.setVisibility(View.VISIBLE);
+                    button_closeButton.setVisibility(View.VISIBLE);
                 } else {
                     // 原本鳥圖變憤怒鳥圖
                     String uri = "@drawable/cockatoo_f"; //圖片路徑和名稱

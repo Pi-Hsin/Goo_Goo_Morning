@@ -272,6 +272,7 @@ public class AddClock extends AppCompatActivity {
 
                         String tmpS=format(hourOfDay)+":"+format(minute);
                         setTime1.setText(tmpS);
+
 /**
                                 Intent intent = new Intent(AddClock.this, CallAlarm.class);
                                 PendingIntent sender=PendingIntent.getBroadcast(

@@ -106,7 +106,7 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
 
                 if( mShakeCount%2 ==1)
                 {
-                    iv.setImageDrawable(getResources().getDrawable(R.drawable.owl_say));
+                    iv.setImageDrawable(getResources().getDrawable(R.drawable.owl_q2));
                 }
                 else {
                     iv.setImageDrawable(getResources().getDrawable(R.drawable.owl_q));

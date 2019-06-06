@@ -1,16 +1,18 @@
 package com.example.goo_goo_mornind;
 
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
+import android.widget.Toast;
+
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,27 +24,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ArrayList<String> myDataset = new ArrayList<>();
         Intent intent = getIntent();
         String time = intent.getStringExtra("alarm_clock");
 
-
+        if(time != null &&!time.equals("")){
+            myDataset.add(Integer.toString(0));
 
 
         //預設有3個鬧鐘，之後再看怎們儲存值
-        ArrayList<String> myDataset = new ArrayList<>();
+
         //for(int i = 0; i < 3; i++){
         //    myDataset.add(Integer.toString(i));
 
        // }
-        mAdapter = new MyAdapter(myDataset,time);
+        mAdapter = new MyAdapter(myDataset,time,MainActivity.this);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        button=(Button)findViewById(R.id.button);
+        button=(Button)findViewById(R.id.Button);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mAdapter);
+    }else{
 
+        }
 
     }
 

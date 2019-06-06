@@ -57,11 +57,13 @@
             android:layout_below="@+id/iv_ggmname"
             android:layout_alignParentRight="true"
             android:layout_marginTop="32dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="48dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/cockatoo" />
+            android:src="@drawable/cockatoo"
+            android:onClick="choose_game"/>
 
         <TextView
+            android:id="@+id/tv_alarm_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_ggmname"
@@ -147,6 +149,15 @@
             android:textColor="@drawable/black"
             android:textSize="10sp">
         </Button>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_alarm_game"
+            android:layout_below="@+id/iv_ggmname"
+            android:layout_marginTop="32dp"
+            />
 
         <ToggleButton
             android:layout_below="@+id/game_tv_empty"

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String time = intent.getStringExtra("alarm_clock");
-
-
 
 
         //預設有3個鬧鐘，之後再看怎們儲存值

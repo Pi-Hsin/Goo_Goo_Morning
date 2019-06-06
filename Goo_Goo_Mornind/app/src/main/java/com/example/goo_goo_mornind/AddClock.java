@@ -171,14 +171,19 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -197,11 +202,14 @@ public class AddClock extends AppCompatActivity {
     AlertDialog builder = null;
     Calendar c=Calendar.getInstance();
 
+    private ImageView imageView_select;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_clock);
+        imageView_select = findViewById(R.id.cockatoo);
 
         //取得活動的Preferences物件
         SharedPreferences settings = getPreferences(Activity.MODE_PRIVATE);
@@ -212,32 +220,58 @@ public class AddClock extends AppCompatActivity {
 
         setTime1.setText(time1String);
 
+        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        final String[] game = {"體感遊戲", "繞口令遊戲","我不玩遊戲"};
+        ArrayAdapter<String> lunchList = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item,
+                game);
+        spinner.setAdapter(lunchList);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(AddClock.this, "你選的是" + game[position], Toast.LENGTH_SHORT).show();
+                if(game[position]=="體感遊戲"){
+                    imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.owl));
+                }else if(game[position]=="繞口令遊戲"){
+                    imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.cockatoo));
+                }else {
+                    imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.normal));
+                }
+            }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
-    public void InitButton1()
-    {
+    public void InitButton1() {
+
         setTime1=(TextView) findViewById(R.id.setTime1);
         mButton1=(Button)findViewById(R.id.mButton1);
-        mButton1.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
+        mButton1.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
                 c.setTimeInMillis(System.currentTimeMillis());
                 int mHour=c.get(Calendar.HOUR_OF_DAY);
                 int mMinute=c.get(Calendar.MINUTE);
 
                 new TimePickerDialog(AddClock.this, new TimePickerDialog.OnTimeSetListener() {
-                            public void onTimeSet(TimePicker view,int hourOfDay, int minute)
-                            {
-                                c.setTimeInMillis(System.currentTimeMillis());
-                                c.set(Calendar.HOUR_OF_DAY,hourOfDay);
-                                c.set(Calendar.MINUTE,minute);
-                                c.set(Calendar.SECOND,0);
-                                c.set(Calendar.MILLISECOND,0);
 
-                                String tmpS=format(hourOfDay)+":"+format(minute);
-                                setTime1.setText(tmpS);
+                    public void onTimeSet(TimePicker view,int hourOfDay, int minute) {
+                        c.setTimeInMillis(System.currentTimeMillis());
+                        c.set(Calendar.HOUR_OF_DAY,hourOfDay);
+                        c.set(Calendar.MINUTE,minute);
+                        c.set(Calendar.SECOND,0);
+                        c.set(Calendar.MILLISECOND,0);
+
+                        String tmpS=format(hourOfDay)+":"+format(minute);
+                        setTime1.setText(tmpS);
 /**
                                 Intent intent = new Intent(AddClock.this, CallAlarm.class);
                                 PendingIntent sender=PendingIntent.getBroadcast(
@@ -262,20 +296,20 @@ public class AddClock extends AppCompatActivity {
                                         Toast.LENGTH_SHORT)
                                         .show();
  **/
-                            }
-                        },mHour,mMinute,true).show();
+                        }
+                    },mHour,mMinute,true).show();
             }
         });
     }
 
 
-    public void InitButton2()
-    {
+    public void InitButton2() {
+
         mButton2=(Button) findViewById(R.id.mButton2);
-        mButton2.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
+        mButton2.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
                 Intent intent = new Intent(AddClock.this, CallAlarm.class);
                 PendingIntent sender=PendingIntent.getBroadcast(
                         AddClock.this,0, intent, 0);
@@ -370,6 +404,11 @@ public class AddClock extends AppCompatActivity {
         intent.setClass(this , MainActivity.class);
         startActivity(intent);
     }
+
+    public void choose_game(View view) {
+
+    }
 }
+
 
 

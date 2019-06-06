@@ -113,7 +113,6 @@ public class VoiceActivity extends AppCompatActivity {
                 am.cancel(sender);
                 Toast.makeText(VoiceActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
 
-                VoiceActivity.this.finish();
                 Intent intent2 = new Intent();
                 intent2.setClass(VoiceActivity.this , MainActivity.class);
                 startActivity(intent2);

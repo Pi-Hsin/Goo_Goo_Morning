@@ -23,6 +23,7 @@ import static android.content.Context.ALARM_SERVICE;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<String> mData;
     private String mtime;
+    private String mgame;
     private Context mcontext;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -42,6 +43,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                             "click " +getAdapterPosition(),Toast.LENGTH_SHORT).show();
                 }
             });
+
+
+            if(mgame=="1"){
+                mToggleButton.setBackgroundDrawable( mcontext.getResources().getDrawable(R.drawable.owl));
+            }else if(mgame=="2"){
+                mToggleButton.setBackgroundDrawable( mcontext.getResources().getDrawable(R.drawable.cockatoo));
+            }else {
+                mToggleButton.setBackgroundDrawable( mcontext.getResources().getDrawable(R.drawable.normal));
+            }
+
+
+
 
             // 按下Button要做的事，可以開關鬧鐘
 
@@ -89,9 +102,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         //顯示鬧鐘時間
         holder.mTextView.setText(mtime);
-
     }
-
     @Override
     public int getItemCount() {
         return mData.size();

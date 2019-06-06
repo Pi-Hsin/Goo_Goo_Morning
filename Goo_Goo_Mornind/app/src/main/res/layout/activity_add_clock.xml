@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_ggmname"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:text="鬧鐘遊戲"
@@ -154,10 +154,9 @@
             android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/tv_alarm_game"
-            android:layout_below="@+id/iv_ggmname"
-            android:layout_marginTop="32dp"
-            />
+            android:layout_alignBottom="@+id/game_tv_empty"
+            android:layout_alignLeft="@+id/tv_alarm_game"
+            android:layout_marginBottom="12dp"/>
 
         <ToggleButton
             android:layout_below="@+id/game_tv_empty"

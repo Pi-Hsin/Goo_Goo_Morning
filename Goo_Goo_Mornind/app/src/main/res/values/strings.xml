@@ -10,4 +10,12 @@
     <string name="str_text1">開始時間</string>
     <string name="str_text2">重複響起的鬧鐘</string>
     <string name="str_text3">秒</string>
+
+    <string-array name="candidate_game">
+        <item>雞腿飯</item>
+        <item>魯肉飯</item>
+        <item>排骨飯</item>
+        <item>水餃</item>
+        <item>陽春麵</item>
+    </string-array>
 </resources>

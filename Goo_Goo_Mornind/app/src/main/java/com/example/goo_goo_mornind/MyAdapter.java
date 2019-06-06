@@ -1,27 +1,39 @@
 package com.example.goo_goo_mornind;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.List;
+
+import static android.content.Context.ALARM_SERVICE;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<String> mData;
     private String mtime;
+    private Context mcontext;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
-        public Button Button;
+        public ToggleButton mToggleButton;
+        public ImageView imageView;
         public ViewHolder(View v) {
             super(v);
             mTextView = (TextView) v.findViewById(R.id.textView);
-            Button = (Button) v.findViewById(R.id.button);
+            mToggleButton = (ToggleButton) v.findViewById(R.id.ToggleButton);
+            imageView=(ImageView) v.findViewById(R.id.imageView_clockBackground);
             // 點擊項目時
             mTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -31,19 +43,38 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 }
             });
 
-            // 點擊項目中的Button時
-            Button.setOnClickListener(new View.OnClickListener() {
+            // 按下Button要做的事，可以開關鬧鐘
+
+            mToggleButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // 按下Button要做的事，可以開關鬧鐘
+                    //打開
+                    if (mToggleButton.isChecked()){
+
+                    }else{
+                        //關掉
+                        Intent intent = new Intent(mcontext, CallAlarm.class);
+                        PendingIntent sender=PendingIntent.getBroadcast(
+                                mcontext,0, intent, 0);
+                        AlarmManager am;
+                        am =(AlarmManager)mcontext.getSystemService(ALARM_SERVICE);
+                        am.cancel(sender);
+                        Toast.makeText(mcontext,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                        imageView.setAlpha(0.5f);
+                        mTextView.setAlpha(0.5f);
+                    }
+
+
+
                 }
             });
         }
     }
 
-    public MyAdapter(List<String> data,String time) {
+    public MyAdapter(List<String> data,String time,Context context) {
         mData = data;
         mtime=time;
+        mcontext=context;
     }
 
     @Override

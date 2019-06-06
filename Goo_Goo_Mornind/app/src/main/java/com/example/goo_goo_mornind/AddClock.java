@@ -198,6 +198,7 @@ public class AddClock extends AppCompatActivity {
 
     String time1String = null;
     String defalutString = "__ : __";
+    String game1String;
 
     AlertDialog builder = null;
     Calendar c=Calendar.getInstance();
@@ -233,10 +234,13 @@ public class AddClock extends AppCompatActivity {
                 //Toast.makeText(AddClock.this, "你選的是" + game[position], Toast.LENGTH_SHORT).show();
                 if(game[position]=="體感遊戲"){
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.owl));
+                    game1String="1";
                 }else if(game[position]=="繞口令遊戲"){
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.cockatoo));
+                    game1String="2";
                 }else {
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.normal));
+                    game1String="3";
                 }
             }
 
@@ -385,6 +389,7 @@ public class AddClock extends AppCompatActivity {
 
         Intent intent2 = new Intent(AddClock.this, MainActivity.class);
         intent2.putExtra("alarm_clock",tmpS);
+        intent2.putExtra("alarm_game",game1String);
         startActivity(intent2);
 
         //SharedPreferences儲存資料,並提交

@@ -126,6 +126,7 @@ public class NormalActivity extends AppCompatActivity {
                         //Toast.makeText(MainActivity.this,"換圖",Toast.LENGTH_SHORT).show();
                         moveImage.setImageDrawable(getResources().getDrawable(R.drawable.normal_2));
                         ivb.setVisibility(View.VISIBLE);
+                        //!!!!!!!!!!這邊顯示關閉的按紐，並且關掉鬧鐘喔!!!!!!!!!
                     }
                     mLastX = event.getRawX();
                     mLastY = event.getRawY();

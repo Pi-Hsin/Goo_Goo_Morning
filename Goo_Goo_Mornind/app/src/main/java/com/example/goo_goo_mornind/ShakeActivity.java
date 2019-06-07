@@ -117,7 +117,7 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
                 if(String.valueOf(mShakeCount) != mCorrect)
                 {
                     mAnswer.setText("shake: " + String.valueOf(mShakeCount));
-                    Toast.makeText(this,"正確解答："+mCorrect+"  現在累積數："+mShakeCount,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this,"正確解答："+mCorrect+"  現在累積數："+mShakeCount,Toast.LENGTH_SHORT).show();
                 }
                 if (mShakeCount == Integer.valueOf(mCorrect))
                 {
@@ -125,6 +125,7 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
                     mShakeCount=0;
                     iv.setImageDrawable(getResources().getDrawable(R.drawable.owl_t));
                     ivb.setVisibility(View.VISIBLE);
+                    //!!!!!!!!!!這邊顯示關閉的按紐，並且關掉鬧鐘喔!!!!!!!!!
                 }
             }
         }

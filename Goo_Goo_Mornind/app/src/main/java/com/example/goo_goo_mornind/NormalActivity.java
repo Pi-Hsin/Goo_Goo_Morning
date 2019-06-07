@@ -1,5 +1,6 @@
 package com.example.goo_goo_mornind;
 
+import android.animation.ObjectAnimator;
 import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,15 @@ public class NormalActivity extends AppCompatActivity {
         initView();
 
         moveImage.setOnTouchListener(onTouchListener);
+        ObjectAnimator ani = ObjectAnimator.ofFloat( findViewById( R.id.sildeimg)  // 動畫目標
+                , "translationX"  // 動畫效果 (X 軸翻轉)
+                , -200        // 開始角度
+                , 200    // 結束角度
+        );
+        ani.setRepeatCount(ObjectAnimator.INFINITE);
+        //ani.setRepeatMode(ObjectAnimator.REVERSE);
+        ani.setDuration(2000);  // 動畫時間
+        ani.start();
     }
 
     private void initView() {

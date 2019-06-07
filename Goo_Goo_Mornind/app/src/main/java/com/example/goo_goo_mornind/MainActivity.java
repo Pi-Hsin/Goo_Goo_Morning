@@ -1,5 +1,6 @@
 package com.example.goo_goo_mornind;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -18,37 +19,56 @@ import android.widget.Toast;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Button button;
     private MyAdapter mAdapter;
+    private  Set<String> test1 = new HashSet<>();;
+    public static  Set<String> test = new HashSet<>();
+    private SharedPreferences mPreferences;
 
+    private String sharedPrefFile =
+            "com.example.android.hellosharedprefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ArrayList<String> myDataset = new ArrayList<>();
-        Intent intent = getIntent();
-        String time = intent.getStringExtra("alarm_clock");
-        if(time != null &&!time.equals("")){
-            myDataset.add(Integer.toString(0));
-
-        //預設有3個鬧鐘，之後再看怎們儲存值
-
-        //for(int i = 0; i < 3; i++){
-        //    myDataset.add(Integer.toString(i));
-
-       // }
-        mAdapter = new MyAdapter(myDataset,time,MainActivity.this);
-
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         button=(Button)findViewById(R.id.Button);
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(mAdapter);
-    }else{
+        // Initialize preferences
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+
+       // Restore preferences
+        test=(mPreferences.getStringSet("Arraylist",test));
+        Toast.makeText(MainActivity.this, test1.toString(), Toast.LENGTH_SHORT)
+                    .show();
+
+
+
+        //addClock傳來的值
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String tmp=(bundle.getString("clock"));
+            String[] x=tmp.split(",");
+            String id=x[0];
+            String time=x[1];
+            String type=x[2];
+            String mode=x[3];
+            Clock y=new Clock(id,time,type,mode);
+            test.add(tmp);
+            myDataset.add(Integer.toString(test.size()));
+            mAdapter = new MyAdapter(myDataset,MainActivity.this,y);
+            final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            mRecyclerView.setLayoutManager(layoutManager);
+            mRecyclerView.setAdapter(mAdapter);
+        }else{
 
         }
 
@@ -67,4 +87,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+        preferencesEditor.putStringSet("Arraylist", test);
+        preferencesEditor.apply();
+    }
 }

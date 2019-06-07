@@ -22,9 +22,8 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<String> mData;
-    private String mtime;
-    private String mgame;
     private Context mcontext;
+    private Clock mclock;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -45,9 +44,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             });
 
 
-            if(mgame=="1"){
+            if(mclock.mtype=="0"){
                 mToggleButton.setBackgroundDrawable( mcontext.getResources().getDrawable(R.drawable.owl));
-            }else if(mgame=="2"){
+            }else if(mclock.mtype=="1"){
                 mToggleButton.setBackgroundDrawable( mcontext.getResources().getDrawable(R.drawable.cockatoo));
             }else {
                 mToggleButton.setBackgroundDrawable( mcontext.getResources().getDrawable(R.drawable.normal));
@@ -84,10 +83,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public MyAdapter(List<String> data,String time,Context context) {
+    public MyAdapter(List<String> data,Context context,Clock clock) {
         mData = data;
-        mtime=time;
         mcontext=context;
+        mclock=clock;
     }
 
     @Override
@@ -101,7 +100,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         //顯示鬧鐘時間
-        holder.mTextView.setText(mtime);
+        holder.mTextView.setText(mclock.mtime);
     }
     @Override
     public int getItemCount() {

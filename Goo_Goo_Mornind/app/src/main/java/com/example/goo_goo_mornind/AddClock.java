@@ -163,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
 }**/
 
 import java.util.Calendar;
+import java.util.HashMap;
+
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -198,11 +200,13 @@ public class AddClock extends AppCompatActivity {
 
     String time1String = null;
     String defalutString = "__ : __";
+    String game1String;
 
     AlertDialog builder = null;
     Calendar c=Calendar.getInstance();
 
     private ImageView imageView_select;
+    private Spinner spinner;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -210,6 +214,7 @@ public class AddClock extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_clock);
         imageView_select = findViewById(R.id.cockatoo);
+        spinner =  findViewById(R.id.spinner);
 
         //取得活動的Preferences物件
         SharedPreferences settings = getPreferences(Activity.MODE_PRIVATE);
@@ -233,10 +238,13 @@ public class AddClock extends AppCompatActivity {
                 //Toast.makeText(AddClock.this, "你選的是" + game[position], Toast.LENGTH_SHORT).show();
                 if(game[position]=="體感遊戲"){
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.owl));
+                    game1String="1";
                 }else if(game[position]=="繞口令遊戲"){
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.cockatoo));
+                    game1String="2";
                 }else {
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.normal));
+                    game1String="3";
                 }
             }
 
@@ -369,8 +377,10 @@ public class AddClock extends AppCompatActivity {
 
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int min = c.get(Calendar.MINUTE);
-
+        String tmpS=format(hour)+":"+format(min);
         Intent intent = new Intent(AddClock.this, CallAlarm.class);
+        intent.putExtra("time",tmpS);
+        intent.putExtra("type",spinner.getSelectedItemPosition()+"");
 
         PendingIntent sender=PendingIntent.getBroadcast(
                 AddClock.this,0, intent, 0);
@@ -380,18 +390,29 @@ public class AddClock extends AppCompatActivity {
 
         );
 
-        String tmpS=format(hour)+":"+format(min);
+
         setTime1.setText(tmpS);
 
+
         Intent intent2 = new Intent(AddClock.this, MainActivity.class);
+
+        Bundle bundle = new Bundle();
+        //Clock test=new Clock(0,tmpS,spinner.getSelectedItemPosition());
+        bundle.putString("clock","0,"+tmpS+","+spinner.getSelectedItemPosition()+",0");
+
+        intent2.putExtras(bundle);
+
         intent2.putExtra("alarm_clock",tmpS);
+        intent2.putExtra("alarm_game",game1String);
+
         startActivity(intent2);
 
+        //Intent intent2 = new Intent(AddClock.this, MainActivity.class);
+       // intent2.putExtra("alarm_clock",tmpS);
+       //startActivity(intent2);
+
         //SharedPreferences儲存資料,並提交
-        SharedPreferences time1Share = getPreferences(0);
-        SharedPreferences.Editor editor = time1Share.edit();
-        editor.putString("TIME1", tmpS);
-        editor.commit();
+
 
 
         Toast.makeText(AddClock.this,"設定Goo Time為"+tmpS,

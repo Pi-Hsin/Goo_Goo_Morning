@@ -3,7 +3,7 @@
     package="com.example.goo_goo_mornind">
 
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".NormalActivity"></activity>
         <activity android:name=".LogoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,16 +22,14 @@
         </activity>
         <activity
             android:name=".OnboardingActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ShakeActivity" />
         <activity android:name=".VoiceActivity" />
         <activity android:name=".AddClock" />
         <activity
-        android:name=".AlarmAlert"
+            android:name=".AlarmAlert"
             android:label="@string/app_name" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
 
         <receiver
             android:name=".CallAlarm"

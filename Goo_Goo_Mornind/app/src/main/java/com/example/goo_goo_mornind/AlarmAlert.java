@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
@@ -22,7 +23,9 @@ public class AlarmAlert extends Activity {
         super.onCreate(savedInstanceState);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         tBtn_vib = (ToggleButton) findViewById(R.id.toggle_button1);
-
+        Bundle bundle = getIntent().getExtras();
+        String time=bundle.getString("time");
+        String type=bundle.getString("type");
         //startMedia();//播放音樂
 
         //if (tBtn_vib.isChecked()){
@@ -30,10 +33,15 @@ public class AlarmAlert extends Activity {
         //}//震動
 
         //startVibrator();
-        Intent intent2 = new Intent(AlarmAlert.this, VoiceActivity.class);
-        intent2.putExtra("alarm_clock","12:22");
-        startActivity(intent2);
-
+        if(type.equals("1")) {
+            Intent intent2 = new Intent(AlarmAlert.this, VoiceActivity.class);
+            intent2.putExtra("alarm_clock", time);
+            startActivity(intent2);
+        }else if(type.equals("0")){
+            Intent intent3= new Intent(AlarmAlert.this, ShakeActivity.class);
+            intent3.putExtra("alarm_clock", time);
+            startActivity(intent3);
+        }
 /*
 
         new AlertDialog.Builder(AlarmAlert.this)

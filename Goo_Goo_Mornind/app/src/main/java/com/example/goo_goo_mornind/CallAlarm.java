@@ -20,6 +20,7 @@ public class CallAlarm extends BroadcastReceiver
 
     {
 
+
         Intent i = new Intent(context, AlarmAlert.class);
 
 
@@ -27,6 +28,8 @@ public class CallAlarm extends BroadcastReceiver
         Bundle bundleRet = new Bundle();
 
         bundleRet.putString("STR_CALLER", "");
+        bundleRet.putString("time",intent.getStringExtra("time"));
+        bundleRet.putString("type",intent.getStringExtra("type"));
 
         i.putExtras(bundleRet);
 

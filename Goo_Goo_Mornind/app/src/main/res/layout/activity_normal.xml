@@ -146,7 +146,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_clockBackground"
-        app:layout_constraintVertical_bias="0.897"
+        app:layout_constraintVertical_bias="0.996"
         app:srcCompat="@drawable/slide" />
 
 </android.support.constraint.ConstraintLayout>

@@ -121,8 +121,9 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
                 }
                 if (mShakeCount == Integer.valueOf(mCorrect))
                 {
-                    Toast.makeText(this,"You are correct!!!!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"You are correct!!!",Toast.LENGTH_LONG).show();
                     mShakeCount=0;
+                    iv.setImageDrawable(getResources().getDrawable(R.drawable.owl_t));
                     ivb.setVisibility(View.VISIBLE);
                 }
             }

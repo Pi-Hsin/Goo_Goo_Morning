@@ -74,6 +74,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                         Toast.makeText(mcontext,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
                         imageView.setAlpha(0.5f);
                         mTextView.setAlpha(0.5f);
+
                     }
 
 

@@ -18,7 +18,7 @@ public class NormalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_normal);
         ivb = (ImageView)findViewById(R.id.imageView_closeButton);
         ivb.setVisibility(View.INVISIBLE);
 

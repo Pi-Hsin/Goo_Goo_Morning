@@ -192,7 +192,7 @@ import android.widget.Toast;
 
 
 public class AddClock extends AppCompatActivity {
-
+     static int cnt;
     TextView setTime1;
 
     Button mButton1;
@@ -216,13 +216,18 @@ public class AddClock extends AppCompatActivity {
         imageView_select = findViewById(R.id.cockatoo);
         spinner =  findViewById(R.id.spinner);
 
+        //取得目前有幾個鬧鐘
+        Intent intent= this.getIntent();
+        if (intent != null) {
+            cnt = intent.getIntExtra("cnt", 1)+1;
+            Toast.makeText(AddClock.this, Integer.toString(cnt), Toast.LENGTH_SHORT)
+                    .show();
+        }
         //取得活動的Preferences物件
         SharedPreferences settings = getPreferences(Activity.MODE_PRIVATE);
         time1String = settings.getString("TIME1", defalutString);
-
         InitButton1();
         InitButton2();
-
         setTime1.setText(time1String);
 
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
@@ -320,8 +325,8 @@ public class AddClock extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(AddClock.this, CallAlarm.class);
-                PendingIntent sender=PendingIntent.getBroadcast(
-                        AddClock.this,0, intent, 0);
+
+                PendingIntent sender=PendingIntent.getBroadcast(AddClock.this,cnt++, intent, 0);
                 AlarmManager am;
                 am =(AlarmManager)getSystemService(ALARM_SERVICE);
                 am.cancel(sender);
@@ -379,6 +384,7 @@ public class AddClock extends AppCompatActivity {
         int min = c.get(Calendar.MINUTE);
         String tmpS=format(hour)+":"+format(min);
         Intent intent = new Intent(AddClock.this, CallAlarm.class);
+
         intent.putExtra("time",tmpS);
         intent.putExtra("type",spinner.getSelectedItemPosition()+"");
 
@@ -398,7 +404,7 @@ public class AddClock extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         //Clock test=new Clock(0,tmpS,spinner.getSelectedItemPosition());
-        bundle.putString("clock","0,"+tmpS+","+spinner.getSelectedItemPosition()+",0");
+        bundle.putString("clock",Integer.toString(cnt)+","+tmpS+","+spinner.getSelectedItemPosition()+",0,");
 
         intent2.putExtras(bundle);
 
@@ -415,7 +421,7 @@ public class AddClock extends AppCompatActivity {
 
 
 
-        Toast.makeText(AddClock.this,"設定Goo Time為"+tmpS,
+        Toast.makeText(AddClock.this,"設定第"+Integer.toString(cnt)+"Goo Time為"+tmpS,
                 Toast.LENGTH_SHORT)
                 .show();
     }

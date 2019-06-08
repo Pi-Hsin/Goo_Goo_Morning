@@ -41,6 +41,10 @@ public class AlarmAlert extends Activity {
             Intent intent3= new Intent(AlarmAlert.this, ShakeActivity.class);
             intent3.putExtra("alarm_clock", time);
             startActivity(intent3);
+        }else{
+            Intent intent4= new Intent(AlarmAlert.this, NormalActivity.class);
+            intent4.putExtra("alarm_clock", time);
+            startActivity(intent4);
         }
 /*
 

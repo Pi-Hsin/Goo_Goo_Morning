@@ -22,15 +22,15 @@ public class AlarmAlert extends Activity {
 
         super.onCreate(savedInstanceState);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        tBtn_vib = (ToggleButton) findViewById(R.id.toggle_button1);
+        //tBtn_vib = (ToggleButton) findViewById(R.id.toggle_button1);
         Bundle bundle = getIntent().getExtras();
         String time=bundle.getString("time");
         String type=bundle.getString("type");
         //startMedia();//播放音樂
 
-        //if (tBtn_vib.isChecked()){
-        //startVibrator();
-        //}//震動
+
+        startVibrator();
+
 
         //startVibrator();
         if(type.equals("1")) {

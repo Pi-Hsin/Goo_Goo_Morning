@@ -42,6 +42,7 @@ public class VoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        startVibrator();
 
         // find view
         textView_time = findViewById(R.id.textView_alarmTime);
@@ -105,13 +106,17 @@ public class VoiceActivity extends AppCompatActivity {
         button_closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VoiceActivity.this, CallAlarm.class);
-                PendingIntent sender=PendingIntent.getBroadcast(
-                        VoiceActivity.this,0, intent, 0);
-                AlarmManager am;
-                am =(AlarmManager)getSystemService(ALARM_SERVICE);
-                am.cancel(sender);
-                Toast.makeText(VoiceActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(VoiceActivity.this, CallAlarm.class);
+                //PendingIntent sender=PendingIntent.getBroadcast(
+                //        VoiceActivity.this,0, intent, 0);
+                //AlarmManager am;
+                //am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                //am.cancel(sender);
+                //Toast.makeText(VoiceActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+
+                vibrator.cancel();
+
+                VoiceActivity.this.finish();
 
                 Intent intent2 = new Intent();
                 intent2.setClass(VoiceActivity.this , MainActivity.class);
@@ -180,8 +185,14 @@ public class VoiceActivity extends AppCompatActivity {
                     randomNow = r.nextInt(voiceGame_List.size());
                     textView_question.setText(voiceGame_List.get(randomNow));
                     voiceGame_List.remove(randomNow);
+
                 }
             }
         }
+    }
+
+    private void startVibrator() {
+        long[] pattern = {500, 1000, 500, 1000};//停止開始停止 開始
+        vibrator.vibrate(pattern, 0);
     }
 }

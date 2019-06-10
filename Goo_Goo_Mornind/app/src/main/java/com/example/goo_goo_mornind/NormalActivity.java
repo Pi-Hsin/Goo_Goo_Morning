@@ -1,7 +1,9 @@
 package com.example.goo_goo_mornind;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ public class NormalActivity extends AppCompatActivity {
     private ImageView moveImage;
     private RelativeLayout mRelativeLayout;
     private ImageView ivb;//imageView_closeButton
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,10 @@ public class NormalActivity extends AppCompatActivity {
         //ani.setRepeatMode(ObjectAnimator.REVERSE);
         ani.setDuration(2000);  // 動畫時間
         ani.start();
+
+        //加入音樂
+        mediaPlayer = MediaPlayer.create(this,R.raw.alarm1);
+        mediaPlayer.start();
     }
 
     private void initView() {
@@ -127,6 +134,11 @@ public class NormalActivity extends AppCompatActivity {
                         moveImage.setImageDrawable(getResources().getDrawable(R.drawable.normal_2));
                         ivb.setVisibility(View.VISIBLE);
                         //!!!!!!!!!!這邊顯示關閉的按紐，並且關掉鬧鐘喔!!!!!!!!!
+                        mediaPlayer.stop();
+                        //NormalActivity.this.finish();
+                        Intent intent2 = new Intent();
+                        intent2.setClass(NormalActivity.this , MainActivity.class);
+                        startActivity(intent2);
                     }
                     mLastX = event.getRawX();
                     mLastY = event.getRawY();

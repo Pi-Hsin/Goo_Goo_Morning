@@ -227,15 +227,15 @@ public class AddClock extends AppCompatActivity {
         SharedPreferences settings = getPreferences(Activity.MODE_PRIVATE);
         time1String = settings.getString("TIME1", defalutString);
         InitButton1();
-        InitButton2();
+        //InitButton2();
         setTime1.setText(time1String);
 
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
         final String[] game = {"體感遊戲", "繞口令遊戲","我不玩遊戲"};
-        ArrayAdapter<String> lunchList = new ArrayAdapter<>(this,
+        ArrayAdapter<String> gameList = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 game);
-        spinner.setAdapter(lunchList);
+        spinner.setAdapter(gameList);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -244,9 +244,11 @@ public class AddClock extends AppCompatActivity {
                 if(game[position]=="體感遊戲"){
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.owl));
                     game1String="1";
+                    Toast.makeText(AddClock.this, "你選的是" + game[position], Toast.LENGTH_SHORT).show();
                 }else if(game[position]=="繞口令遊戲"){
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.cockatoo));
                     game1String="2";
+                    Toast.makeText(AddClock.this, "你選的是" + game[position], Toast.LENGTH_SHORT).show();
                 }else {
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.normal));
                     game1String="3";
@@ -256,7 +258,9 @@ public class AddClock extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //如果沒選的話，預設為不玩遊戲
+                imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.normal));
+                game1String="3";
             }
         });
     }
@@ -316,7 +320,7 @@ public class AddClock extends AppCompatActivity {
         });
     }
 
-
+    /*
     public void InitButton2() {
 
         mButton2=(Button) findViewById(R.id.mButton2);
@@ -341,6 +345,7 @@ public class AddClock extends AppCompatActivity {
             }
         });
     }
+    */
 
     @Override
 
@@ -382,19 +387,26 @@ public class AddClock extends AppCompatActivity {
 
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int min = c.get(Calendar.MINUTE);
+
         String tmpS=format(hour)+":"+format(min);
         Intent intent = new Intent(AddClock.this, CallAlarm.class);
 
         intent.putExtra("time",tmpS);
         intent.putExtra("type",spinner.getSelectedItemPosition()+"");
 
+
         PendingIntent sender=PendingIntent.getBroadcast(
-                AddClock.this,0, intent, 0);
+                AddClock.this,cnt, intent, 0);
+
+        //如果設定的時間在當前時間以前，要把日期+1
+        if(c.getTimeInMillis() <= System.currentTimeMillis()){
+            c.add(Calendar.DAY_OF_YEAR,1);
+        }
+
+
         AlarmManager am;
         am = (AlarmManager)getSystemService(ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender
-
-        );
+        am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender);
 
 
         setTime1.setText(tmpS);
@@ -405,6 +417,18 @@ public class AddClock extends AppCompatActivity {
         Bundle bundle = new Bundle();
         //Clock test=new Clock(0,tmpS,spinner.getSelectedItemPosition());
         bundle.putString("clock",Integer.toString(cnt)+","+tmpS+","+spinner.getSelectedItemPosition()+",0,");
+
+
+        /**
+        SharedPreferences sharedPreferences = getSharedPreferences("data" , MODE_PRIVATE);
+        //取得SharedPreferences ， 丟入的參數為("名稱" , 存取權限)
+
+        sharedPreferences.edit().putInt("id" , position).apply();
+        //存入資料，丟入的參數為(key , value)
+
+        sharedPreferences.getInt("score" , 0);
+        //取出資料， 丟入的參數為(key , 若是沒值，預設為多少)
+**/
 
         intent2.putExtras(bundle);
 

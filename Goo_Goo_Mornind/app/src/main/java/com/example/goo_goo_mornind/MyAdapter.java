@@ -4,7 +4,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
 
+
             // 按下Button要做的事，可以開關鬧鐘
 
             mToggleButton.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +65,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 public void onClick(View view) {
                     //打開
                     if (mToggleButton.isChecked()){
+                        //imageView.setAlpha(1f);
+                        //mTextView.setAlpha(1f);
 
                     }else{
                         //關掉
@@ -74,11 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                         Toast.makeText(mcontext,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
                         imageView.setAlpha(0.5f);
                         mTextView.setAlpha(0.5f);
-
                     }
-
-
-
                 }
             });
         }
@@ -102,6 +103,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         //顯示鬧鐘時間
         holder.mTextView.setText(mclock.mtime);
+
     }
     @Override
     public int getItemCount() {

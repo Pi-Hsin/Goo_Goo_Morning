@@ -137,19 +137,6 @@
         </Button>
 
 
-        <Button
-            android:id="@+id/mButton2"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/game_tv_empty"
-            android:layout_toRightOf="@id/mButton1"
-            android:layout_marginTop="56dp"
-            android:layout_marginLeft="20dp"
-            android:text="@string/str_button2"
-            android:textColor="@drawable/black"
-            android:textSize="10sp">
-        </Button>
-
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="wrap_content"

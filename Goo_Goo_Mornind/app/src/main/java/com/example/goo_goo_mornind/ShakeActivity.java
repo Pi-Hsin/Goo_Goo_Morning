@@ -6,6 +6,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,9 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
     private String mCorrect;
     private ImageView iv;
     private ImageView ivb;//imageView_closeButton
+
+    private MediaPlayer mediaPlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,9 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
         //ani.setDuration(1000);  // 動畫時間
         //ani.start();
 
+        //加入音樂
+        mediaPlayer = MediaPlayer.create(this,R.raw.alarm1);
+        mediaPlayer.start();
     }
 
     @Override
@@ -134,6 +141,11 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
                     iv.setImageDrawable(getResources().getDrawable(R.drawable.owl_t));
                     ivb.setVisibility(View.VISIBLE);
                     //!!!!!!!!!!這邊顯示關閉的按紐，並且關掉鬧鐘喔!!!!!!!!!
+                    mediaPlayer.stop();
+                    ShakeActivity.this.finish();
+                    Intent intent2 = new Intent();
+                    intent2.setClass(ShakeActivity.this , MainActivity.class);
+                    startActivity(intent2);
                 }
             }
         }

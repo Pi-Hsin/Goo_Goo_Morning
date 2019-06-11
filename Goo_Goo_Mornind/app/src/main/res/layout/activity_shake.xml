@@ -95,7 +95,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView_alarmTime" />
 
 
-    <ImageView
+    <Button
         android:id="@+id/imageView_closeButton"
         android:layout_width="0dp"
         android:layout_height="70dp"

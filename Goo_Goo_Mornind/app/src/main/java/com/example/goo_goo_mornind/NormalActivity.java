@@ -9,20 +9,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 public class NormalActivity extends AppCompatActivity {
     private ImageView moveImage;
     private RelativeLayout mRelativeLayout;
-    private ImageView ivb;//imageView_closeButton
+    private Button ivb;//imageView_closeButton
     private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal);
-        ivb = (ImageView)findViewById(R.id.imageView_closeButton);
+        ivb = (Button)findViewById(R.id.imageView_closeButton);
         ivb.setVisibility(View.INVISIBLE);
 
 
@@ -136,9 +137,15 @@ public class NormalActivity extends AppCompatActivity {
                         //!!!!!!!!!!這邊顯示關閉的按紐，並且關掉鬧鐘喔!!!!!!!!!
                         mediaPlayer.stop();
                         //NormalActivity.this.finish();
-                        Intent intent2 = new Intent();
-                        intent2.setClass(NormalActivity.this , MainActivity.class);
-                        startActivity(intent2);
+                        ivb.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent2 = new Intent();
+                                intent2.setClass(NormalActivity.this , MainActivity.class);
+                                startActivity(intent2);
+                            }
+                        });
+
                     }
                     mLastX = event.getRawX();
                     mLastY = event.getRawY();

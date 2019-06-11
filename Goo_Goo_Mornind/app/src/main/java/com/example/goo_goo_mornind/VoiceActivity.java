@@ -116,7 +116,7 @@ public class VoiceActivity extends AppCompatActivity {
 
                 vibrator.cancel();
 
-                VoiceActivity.this.finish();
+                //VoiceActivity.this.finish();
 
                 Intent intent2 = new Intent();
                 intent2.setClass(VoiceActivity.this , MainActivity.class);

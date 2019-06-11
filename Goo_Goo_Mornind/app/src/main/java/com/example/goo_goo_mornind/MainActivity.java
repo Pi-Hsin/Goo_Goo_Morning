@@ -57,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
             clocks[0].mtime=time;
             clocks[0].mtype=type;
             clocks[0].mmode=mode;
-
+            myDataset.add(1,test);
+            Clock y=new Clock(id,time,type,mode);
+            mAdapter = new MyAdapter(myDataset,MainActivity.this,y);
+            mRecyclerView.setAdapter(mAdapter);
             Toast.makeText(MainActivity.this, clocks[0].mtime, Toast.LENGTH_SHORT)
                     .show();
         //原本有二個鬧鐘
@@ -125,9 +128,9 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(MainActivity.this, clocks[cnt].mtime, Toast.LENGTH_SHORT)
                     .show();
-            myDataset.add(Integer.toString(cnt));
+            myDataset.add(cnt++,tmp);
 
-            cnt++;
+
             mAdapter = new MyAdapter(myDataset,MainActivity.this,y);
             final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -158,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
         SharedPreferences.Editor preferencesEditor = mPreferences.edit();
         preferencesEditor.putString("Arraylist", test);
         preferencesEditor.putInt("cnt", cnt);
@@ -166,6 +170,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+        preferencesEditor.putString("Arraylist", test);
+        preferencesEditor.putInt("cnt", cnt);
+        preferencesEditor.apply();
         //Toast.makeText(this, "onStop", Toast.LENGTH_LONG).show();
     }
 

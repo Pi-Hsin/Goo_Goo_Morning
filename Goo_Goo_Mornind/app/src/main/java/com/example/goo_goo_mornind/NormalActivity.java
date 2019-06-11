@@ -26,6 +26,14 @@ public class NormalActivity extends AppCompatActivity {
         ivb = (Button)findViewById(R.id.imageView_closeButton);
         ivb.setVisibility(View.INVISIBLE);
 
+        ivb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent();
+                intent2.setClass(NormalActivity.this , MainActivity.class);
+                startActivity(intent2);
+            }
+        });
 
         initView();
 
@@ -135,16 +143,9 @@ public class NormalActivity extends AppCompatActivity {
                         moveImage.setImageDrawable(getResources().getDrawable(R.drawable.normal_2));
                         ivb.setVisibility(View.VISIBLE);
                         //!!!!!!!!!!這邊顯示關閉的按紐，並且關掉鬧鐘喔!!!!!!!!!
-                        mediaPlayer.stop();
+                        //mediaPlayer.stop();
                         //NormalActivity.this.finish();
-                        ivb.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent2 = new Intent();
-                                intent2.setClass(NormalActivity.this , MainActivity.class);
-                                startActivity(intent2);
-                            }
-                        });
+
 
                     }
                     mLastX = event.getRawX();

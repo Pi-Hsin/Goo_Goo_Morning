@@ -224,8 +224,8 @@ public class AddClock extends AppCompatActivity {
                     .show();
         }
         //取得活動的Preferences物件
-        SharedPreferences settings = getPreferences(Activity.MODE_PRIVATE);
-        time1String = settings.getString("TIME1", defalutString);
+        //SharedPreferences settings = getPreferences(Activity.MODE_PRIVATE);
+        //time1String = settings.getString("TIME1", defalutString);
         InitButton1();
         //InitButton2();
         setTime1.setText(time1String);

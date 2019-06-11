@@ -57,7 +57,7 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
         mQuention = findViewById(R.id.text_Quention);
         mAnswer=findViewById(R.id.text_Answer);
         Random ran = new Random();
-        int mNumber=ran.nextInt(10)+1;
+        int mNumber=ran.nextInt(10);
         mQuention.setText("Quention:\n"+mQ[mNumber]);
         mCorrect=mA[mNumber];
         iv = (ImageView)findViewById(R.id.Owl_shake_ImgV);

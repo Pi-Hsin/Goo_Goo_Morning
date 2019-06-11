@@ -42,7 +42,7 @@ public class VoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        startVibrator();
+        //startVibrator();
 
         // find view
         textView_time = findViewById(R.id.textView_alarmTime);

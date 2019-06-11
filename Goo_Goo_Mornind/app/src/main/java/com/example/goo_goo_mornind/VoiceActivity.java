@@ -113,10 +113,8 @@ public class VoiceActivity extends AppCompatActivity {
                 //am =(AlarmManager)getSystemService(ALARM_SERVICE);
                 //am.cancel(sender);
                 //Toast.makeText(VoiceActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
-
-                vibrator.cancel();
-
                 //VoiceActivity.this.finish();
+                vibrator.cancel();
 
                 Intent intent2 = new Intent();
                 intent2.setClass(VoiceActivity.this , MainActivity.class);
@@ -155,6 +153,7 @@ public class VoiceActivity extends AppCompatActivity {
 
                 // 比對題目跟語音轉文字是否相同
                 if(textView_question.getText().equals(textView_speech.getText())){
+                    vibrator.cancel();
                     // 答對鳥圖、對話框出現
                     imageView_rightOrError.setVisibility(View.VISIBLE);
                     imageView_cockatooAnswer.setVisibility(View.VISIBLE);
@@ -194,5 +193,10 @@ public class VoiceActivity extends AppCompatActivity {
     private void startVibrator() {
         long[] pattern = {500, 1000, 500, 1000};//停止開始停止 開始
         vibrator.vibrate(pattern, 0);
+    }
+
+    public void onStop(){
+        super.onStop();
+        vibrator.cancel();
     }
 }

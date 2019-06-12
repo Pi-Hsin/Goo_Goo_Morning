@@ -1,5 +1,7 @@
 package com.example.goo_goo_mornind;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -74,12 +76,41 @@ public class MainActivity extends AppCompatActivity {
             textView1.setVisibility(View.VISIBLE);
             toggleButton1.setVisibility(View.VISIBLE);
             textView1.setText(time);
+            //取消鬧鐘
+            toggleButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //打開
+                    if (toggleButton1.isChecked()){
+                        //imageView.setAlpha(1f);
+                        //mTextView.setAlpha(1f);
+
+                    }else{
+                        
+                        //關掉
+                        Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                        PendingIntent sender=PendingIntent.getBroadcast(
+                                MainActivity.this,0, intent, 0);
+                        AlarmManager am;
+                        am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                        am.cancel(sender);
+                        Toast.makeText(MainActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                        alerm1.setAlpha(0.5f);
+                        textView1.setAlpha(0.5f);
+                    }
+                }
+            });
             if(type.equals("0")){
                 toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
             }else if(type.equals("1")){
                 toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
             }else{
                 toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+            }
+            //響過
+            if(mode.equals("1")){
+                alerm1.setAlpha(0.5f);
+                textView1.setAlpha(0.5f);
             }
             Toast.makeText(MainActivity.this, clocks[0].mtime, Toast.LENGTH_SHORT)
                     .show();
@@ -105,6 +136,29 @@ public class MainActivity extends AppCompatActivity {
             textView1.setVisibility(View.VISIBLE);
             toggleButton1.setVisibility(View.VISIBLE);
             textView1.setText(time);
+            //取消鬧鐘
+            toggleButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //打開
+                    if (toggleButton1.isChecked()){
+                        //imageView.setAlpha(1f);
+                        //mTextView.setAlpha(1f);
+
+                    }else{
+                        //關掉
+                        Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                        PendingIntent sender=PendingIntent.getBroadcast(
+                                MainActivity.this,0, intent, 0);
+                        AlarmManager am;
+                        am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                        am.cancel(sender);
+                        Toast.makeText(MainActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                        alerm1.setAlpha(0.5f);
+                        textView1.setAlpha(0.5f);
+                    }
+                }
+            });
             if(type.equals("0")){
                 toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
             }else if(type.equals("1")){
@@ -112,16 +166,50 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
             }
+            //響過
+            if(mode.equals("1")){
+                alerm1.setAlpha(0.5f);
+                textView1.setAlpha(0.5f);
+            }
             alerm2.setVisibility(View.VISIBLE);
             textView2.setVisibility(View.VISIBLE);
             toggleButton2.setVisibility(View.VISIBLE);
             textView2.setText(time2);
+            //取消鬧鐘
+            toggleButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //打開
+                    if (toggleButton2.isChecked()){
+                        //imageView.setAlpha(1f);
+                        //mTextView.setAlpha(1f);
+
+                    }else{
+                        //關掉
+
+                        Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                        PendingIntent sender=PendingIntent.getBroadcast(
+                                MainActivity.this,0, intent, 0);
+                        AlarmManager am;
+                        am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                        am.cancel(sender);
+                        Toast.makeText(MainActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                        alerm2.setAlpha(0.5f);
+                        textView2.setAlpha(0.5f);
+                    }
+                }
+            });
             if(type2.equals("0")){
                 toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
             }else if(type2.equals("1")){
                 toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
             }else{
                 toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+            }
+            //響過
+            if(mode2.equals("1")){
+                alerm2.setAlpha(0.5f);
+                textView2.setAlpha(0.5f);
             }
             Toast.makeText(MainActivity.this, clocks[0].mtime+clocks[1].mtime, Toast.LENGTH_SHORT)
                     .show();
@@ -155,6 +243,29 @@ public class MainActivity extends AppCompatActivity {
             textView1.setVisibility(View.VISIBLE);
             toggleButton1.setVisibility(View.VISIBLE);
             textView1.setText(time);
+            //取消鬧鐘
+            toggleButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //打開
+                    if (toggleButton1.isChecked()){
+                        //imageView.setAlpha(1f);
+                        //mTextView.setAlpha(1f);
+
+                    }else{
+                        //關掉
+                        Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                        PendingIntent sender=PendingIntent.getBroadcast(
+                                MainActivity.this,0, intent, 0);
+                        AlarmManager am;
+                        am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                        am.cancel(sender);
+                        Toast.makeText(MainActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                        alerm1.setAlpha(0.5f);
+                        textView1.setAlpha(0.5f);
+                    }
+                }
+            });
             if(type.equals("0")){
                 toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
             }else if(type.equals("1")){
@@ -162,10 +273,38 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
             }
+            //響過
+            if(mode.equals("1")){
+                alerm1.setAlpha(0.5f);
+                textView1.setAlpha(0.5f);
+            }
             alerm2.setVisibility(View.VISIBLE);
             textView2.setVisibility(View.VISIBLE);
             toggleButton2.setVisibility(View.VISIBLE);
             textView2.setText(time2);
+            //取消鬧鐘
+            toggleButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //打開
+                    if (toggleButton2.isChecked()){
+                        //imageView.setAlpha(1f);
+                        //mTextView.setAlpha(1f);
+
+                    }else{
+                        //關掉
+                        Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                        PendingIntent sender=PendingIntent.getBroadcast(
+                                MainActivity.this,0, intent, 0);
+                        AlarmManager am;
+                        am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                        am.cancel(sender);
+                        Toast.makeText(MainActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                        alerm2.setAlpha(0.5f);
+                        textView2.setAlpha(0.5f);
+                    }
+                }
+            });
             if(type2.equals("0")){
                 toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
             }else if(type2.equals("1")){
@@ -173,16 +312,49 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
             }
+            //響過
+            if(mode2.equals("1")){
+                alerm2.setAlpha(0.5f);
+                textView2.setAlpha(0.5f);
+            }
             alerm3.setVisibility(View.VISIBLE);
             textView3.setVisibility(View.VISIBLE);
             toggleButton3.setVisibility(View.VISIBLE);
             textView3.setText(time3);
+            //取消鬧鐘
+            toggleButton3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //打開
+                    if (toggleButton3.isChecked()){
+                        //imageView.setAlpha(1f);
+                        //mTextView.setAlpha(1f);
+
+                    }else{
+                        //關掉
+                        Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                        PendingIntent sender=PendingIntent.getBroadcast(
+                                MainActivity.this,0, intent, 0);
+                        AlarmManager am;
+                        am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                        am.cancel(sender);
+                        Toast.makeText(MainActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                        alerm3.setAlpha(0.5f);
+                        textView3.setAlpha(0.5f);
+                    }
+                }
+            });
             if(type3.equals("0")){
                 toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
             }else if(type3.equals("1")){
                 toggleButton3.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
             }else{
                 toggleButton3.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+            }
+            //響過
+            if(mode3.equals("1")){
+                alerm3.setAlpha(0.5f);
+                textView3.setAlpha(0.5f);
             }
              Toast.makeText(MainActivity.this, clocks[0].mtime+clocks[1].mtime+clocks[2].mtime, Toast.LENGTH_SHORT)
                     .show();
@@ -205,6 +377,29 @@ public class MainActivity extends AppCompatActivity {
                 textView1.setVisibility(View.VISIBLE);
                 toggleButton1.setVisibility(View.VISIBLE);
                 textView1.setText(time);
+                //取消鬧鐘
+                toggleButton1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //打開
+                        if (toggleButton1.isChecked()){
+                            //imageView.setAlpha(1f);
+                            //mTextView.setAlpha(1f);
+
+                        }else{
+                            //關掉
+                            Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                            PendingIntent sender=PendingIntent.getBroadcast(
+                                    MainActivity.this,0, intent, 0);
+                            AlarmManager am;
+                            am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                            am.cancel(sender);
+                            Toast.makeText(MainActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                            alerm1.setAlpha(0.5f);
+                            textView1.setAlpha(0.5f);
+                        }
+                    }
+                });
                 if(type.equals("0")){
                     toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
                 }else if(type.equals("1")){
@@ -217,6 +412,29 @@ public class MainActivity extends AppCompatActivity {
                 textView2.setVisibility(View.VISIBLE);
                 toggleButton2.setVisibility(View.VISIBLE);
                 textView2.setText(time);
+                //取消鬧鐘
+                toggleButton2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //打開
+                        if (toggleButton2.isChecked()){
+                            //imageView.setAlpha(1f);
+                            //mTextView.setAlpha(1f);
+
+                        }else{
+                            //關掉
+                            Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                            PendingIntent sender=PendingIntent.getBroadcast(
+                                    MainActivity.this,0, intent, 0);
+                            AlarmManager am;
+                            am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                            am.cancel(sender);
+                            Toast.makeText(MainActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                            alerm2.setAlpha(0.5f);
+                            textView2.setAlpha(0.5f);
+                        }
+                    }
+                });
                 if(type.equals("0")){
                     toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
                 }else if(type.equals("1")){
@@ -224,29 +442,40 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
                 }
-            }else  if(cnt==1){
-                alerm2.setVisibility(View.VISIBLE);
-                textView2.setVisibility(View.VISIBLE);
-                toggleButton2.setVisibility(View.VISIBLE);
-                textView2.setText(time);
-                if(type.equals("0")){
-                    toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
-                }else if(type.equals("1")){
-                    toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
-                }else{
-                    toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
-                }
-            }else  if(cnt==2) {
+            }else {
                 alerm3.setVisibility(View.VISIBLE);
                 textView3.setVisibility(View.VISIBLE);
                 toggleButton3.setVisibility(View.VISIBLE);
                 textView3.setText(time);
-                if (type.equals("0")) {
+                //取消鬧鐘
+                toggleButton3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //打開
+                        if (toggleButton3.isChecked()){
+                            //imageView.setAlpha(1f);
+                            //mTextView.setAlpha(1f);
+
+                        }else{
+                            //關掉
+                            Intent intent = new Intent(MainActivity.this, CallAlarm.class);
+                            PendingIntent sender=PendingIntent.getBroadcast(
+                                    MainActivity.this,0, intent, 0);
+                            AlarmManager am;
+                            am =(AlarmManager)getSystemService(ALARM_SERVICE);
+                            am.cancel(sender);
+                            Toast.makeText(MainActivity.this,"Goo Time 刪除", Toast.LENGTH_SHORT).show();
+                            alerm3.setAlpha(0.5f);
+                            textView3.setAlpha(0.5f);
+                        }
+                    }
+                });
+                if(type.equals("0")){
                     toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
-                } else if (type.equals("1")) {
-                    toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.cockatoo));
-                } else {
-                    toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.normal));
+                }else if(type.equals("1")){
+                    toggleButton3.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
+                }else{
+                    toggleButton3.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
                 }
             }
 

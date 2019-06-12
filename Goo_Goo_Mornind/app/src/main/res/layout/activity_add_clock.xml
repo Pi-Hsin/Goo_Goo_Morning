@@ -180,8 +180,54 @@
             android:onClick="save_onclick"
             />
 
+        <TextView
+        android:id="@+id/tv_time_repeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/game_tv_empt"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="鬧鐘重複"
+        android:textSize="24sp" />
+
+
+        <ToggleButton
+            android:id="@+id/btn_time_repeat_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_time_repeat"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textOff="Goo一次就好"
+            android:textOn="Goo一次就好!"
+            android:background="@drawable/white"
+            android:textSize="18sp"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <ToggleButton
+            android:id="@+id/btn_time_repeat_many"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_time_repeat"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textOff="天天Goo"
+            android:textOn="天天Goo!"
+            android:background="@drawable/white"
+            android:textSize="18sp"
+            style="?android:attr/borderlessButtonStyle"/>
+
+
+
 
     </RelativeLayout>
+
+
+
 
 
 

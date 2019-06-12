@@ -1,166 +1,166 @@
 package com.example.goo_goo_mornind;
 /**
-import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TimePicker;
-import android.app.AlarmManager;
+ import android.app.AlarmManager;
+ import android.app.Notification;
+ import android.app.NotificationManager;
+ import android.app.PendingIntent;
+ import android.app.TimePickerDialog;
+ import android.content.Context;
+ import android.content.Intent;
+ import android.support.v4.app.NotificationCompat;
+ import android.support.v7.app.AppCompatActivity;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.TimePicker;
+ import android.app.AlarmManager;
 
-import java.util.Calendar;
+ import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+ public class MainActivity extends AppCompatActivity {
 
-    private AlarmManager alarmManager;
-    private PendingIntent pendingIntent;
+ private AlarmManager alarmManager;
+ private PendingIntent pendingIntent;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        //獲取鬧鐘管理者
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-    }
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
 
 
-    public void setAlarm(View view){
-
-        //獲取當前系統時間
-        Calendar calendar=Calendar.getInstance();
-        int hour=calendar.get(Calendar.HOUR_OF_DAY);
-        int minute=calendar.get(Calendar.MINUTE);
-
-        //彈出時間對話方塊
-        TimePickerDialog timePickerDialog=new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                Calendar c=Calendar.getInstance();
-                c.set(Calendar.HOUR_OF_DAY,hourOfDay);
-                c.set(Calendar.MINUTE,minute);
-
-                Intent intent=new Intent();
-                intent.setAction("com.asus.android_28_alarm_notification");
-
-                //將來時態的跳轉
-                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),0x00,intent,0);
-
-                //設定鬧鐘
-                alarmManager.set(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
-                //時間一到,傳送廣播
-                //廣播接受者(跳轉Activity)
-                //時間一到,跳轉Activity,並在該Activity中播放音樂
-
-            }
-        },hour,minute,true);
-        timePickerDialog.show();
-    }
+ //獲取鬧鐘管理者
+ alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+ }
 
 
-    public void setAlarmCycle(View view){
-        //獲取當前系統時間
-        Calendar calendar=Calendar.getInstance();
-        int hour=calendar.get(Calendar.HOUR_OF_DAY);
-        int minute=calendar.get(Calendar.MINUTE);
+ public void setAlarm(View view){
 
-        //彈出時間對話方塊
-        TimePickerDialog timePickerDialog=new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+ //獲取當前系統時間
+ Calendar calendar=Calendar.getInstance();
+ int hour=calendar.get(Calendar.HOUR_OF_DAY);
+ int minute=calendar.get(Calendar.MINUTE);
 
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                Calendar c=Calendar.getInstance();
-                c.set(Calendar.HOUR_OF_DAY,hourOfDay);
-                c.set(Calendar.MINUTE,minute);
-                c.set(Calendar.SECOND, 0);
-                c.set(Calendar.MILLISECOND, 0);
+ //彈出時間對話方塊
+ TimePickerDialog timePickerDialog=new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+ @Override
+ public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+ Calendar c=Calendar.getInstance();
+ c.set(Calendar.HOUR_OF_DAY,hourOfDay);
+ c.set(Calendar.MINUTE,minute);
 
-                Intent intent=new Intent();
-                intent.setAction("com.asus.android_28_alarm_notification");
+ Intent intent=new Intent();
+ intent.setAction("com.asus.android_28_alarm_notification");
 
-                //將來時態的跳轉
-                pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0x00,intent,0);
+ //將來時態的跳轉
+ PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),0x00,intent,0);
 
-                //設定鬧鐘
-//               alarmManager.set(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
-                //設定週期鬧鐘
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),5000, pendingIntent);
+ //設定鬧鐘
+ alarmManager.set(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
+ //時間一到,傳送廣播
+ //廣播接受者(跳轉Activity)
+ //時間一到,跳轉Activity,並在該Activity中播放音樂
 
-                //時間一到,傳送廣播
-                //廣播接受者(跳轉Activity)
-                //時間一到,跳轉Activity,並在該Activity中播放音樂
-
-
-                NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                sendNotification2();
-
-            }
-        },hour,minute,true);
-        timePickerDialog.show();
-    }
+ }
+ },hour,minute,true);
+ timePickerDialog.show();
+ }
 
 
-    public void cancelAlarmCycle(View view){
-        alarmManager.cancel(pendingIntent);
-    }
+ public void setAlarmCycle(View view){
+ //獲取當前系統時間
+ Calendar calendar=Calendar.getInstance();
+ int hour=calendar.get(Calendar.HOUR_OF_DAY);
+ int minute=calendar.get(Calendar.MINUTE);
+
+ //彈出時間對話方塊
+ TimePickerDialog timePickerDialog=new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+
+ @Override
+ public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+ Calendar c=Calendar.getInstance();
+ c.set(Calendar.HOUR_OF_DAY,hourOfDay);
+ c.set(Calendar.MINUTE,minute);
+ c.set(Calendar.SECOND, 0);
+ c.set(Calendar.MILLISECOND, 0);
+
+ Intent intent=new Intent();
+ intent.setAction("com.asus.android_28_alarm_notification");
+
+ //將來時態的跳轉
+ pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0x00,intent,0);
+
+ //設定鬧鐘
+ //               alarmManager.set(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
+ //設定週期鬧鐘
+ alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),5000, pendingIntent);
+
+ //時間一到,傳送廣播
+ //廣播接受者(跳轉Activity)
+ //時間一到,跳轉Activity,並在該Activity中播放音樂
 
 
-    public void sendNotification(View view){
-        //例項化通知管理器
-        NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+ NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+ sendNotification2();
 
-        //例項化通知
-        NotificationCompat.Builder builder=new NotificationCompat.Builder(this);
-        builder.setContentTitle("今天天氣不錯");
-        builder.setContentText("陽光明媚,萬里無雲");
-        builder.setDefaults(NotificationCompat.DEFAULT_ALL);
-
-        builder.setAutoCancel(true);
-
-        builder.setSmallIcon(android.R.drawable.ic_media_play);
-
-        builder.setContentIntent(PendingIntent.getActivity(this,0x102,new Intent(this,RingActivity.class),0));
-
-        Notification notification=builder.build();
-        //傳送通知
-        notificationManager.notify(0x101,notification);
-
-    }
+ }
+ },hour,minute,true);
+ timePickerDialog.show();
+ }
 
 
+ public void cancelAlarmCycle(View view){
+ alarmManager.cancel(pendingIntent);
+ }
 
-    public void sendNotification2(){
-        //例項化通知管理器
-        NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        //例項化通知
-        NotificationCompat.Builder builder=new NotificationCompat.Builder(this);
-        builder.setContentTitle("今天天氣");
-        builder.setContentText("萬里無雲");
-        builder.setDefaults(NotificationCompat.DEFAULT_ALL);
+ public void sendNotification(View view){
+ //例項化通知管理器
+ NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        builder.setAutoCancel(true);
+ //例項化通知
+ NotificationCompat.Builder builder=new NotificationCompat.Builder(this);
+ builder.setContentTitle("今天天氣不錯");
+ builder.setContentText("陽光明媚,萬里無雲");
+ builder.setDefaults(NotificationCompat.DEFAULT_ALL);
 
-        builder.setSmallIcon(android.R.drawable.ic_media_play);
+ builder.setAutoCancel(true);
 
-        builder.setContentIntent(PendingIntent.getActivity(this,0x102,new Intent(this,RingActivity.class),0));
+ builder.setSmallIcon(android.R.drawable.ic_media_play);
 
-        Notification notification=builder.build();
-        //傳送通知
-        notificationManager.notify(0x101,notification);
+ builder.setContentIntent(PendingIntent.getActivity(this,0x102,new Intent(this,RingActivity.class),0));
 
-    }
+ Notification notification=builder.build();
+ //傳送通知
+ notificationManager.notify(0x101,notification);
+
+ }
 
 
 
-}**/
+ public void sendNotification2(){
+ //例項化通知管理器
+ NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+ //例項化通知
+ NotificationCompat.Builder builder=new NotificationCompat.Builder(this);
+ builder.setContentTitle("今天天氣");
+ builder.setContentText("萬里無雲");
+ builder.setDefaults(NotificationCompat.DEFAULT_ALL);
+
+ builder.setAutoCancel(true);
+
+ builder.setSmallIcon(android.R.drawable.ic_media_play);
+
+ builder.setContentIntent(PendingIntent.getActivity(this,0x102,new Intent(this,RingActivity.class),0));
+
+ Notification notification=builder.build();
+ //傳送通知
+ notificationManager.notify(0x101,notification);
+
+ }
+
+
+
+ }**/
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -173,6 +173,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -189,14 +190,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 
 public class AddClock extends AppCompatActivity {
-     static int cnt;
+    static int cnt;
     TextView setTime1;
 
     Button mButton1;
-    Button mButton2;
+    ToggleButton mButton2;
+    ToggleButton mButton3;
 
     String time1String = null;
     String defalutString = "__ : __";
@@ -215,6 +218,8 @@ public class AddClock extends AppCompatActivity {
         setContentView(R.layout.activity_add_clock);
         imageView_select = findViewById(R.id.cockatoo);
         spinner =  findViewById(R.id.spinner);
+        mButton2 = findViewById(R.id.btn_time_repeat_one); //只響一次
+        mButton3 = findViewById(R.id.btn_time_repeat_many);
 
         //取得目前有幾個鬧鐘
         Intent intent= this.getIntent();
@@ -231,7 +236,7 @@ public class AddClock extends AppCompatActivity {
         setTime1.setText(time1String);
 
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
-        final String[] game = {"體感遊戲", "繞口令遊戲","我不玩遊戲"};
+        final String[] game = {"跟著貓頭鷹搖起來", "跟著鸚鵡講鳥話","我不玩遊戲"};
         ArrayAdapter<String> gameList = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 game);
@@ -291,31 +296,31 @@ public class AddClock extends AppCompatActivity {
                         setTime1.setText(tmpS);
 
 /**
-                                Intent intent = new Intent(AddClock.this, CallAlarm.class);
-                                PendingIntent sender=PendingIntent.getBroadcast(
-                                        AddClock.this,0, intent, 0);
-                                AlarmManager am;
-                                am = (AlarmManager)getSystemService(ALARM_SERVICE);
-                                am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender
+ Intent intent = new Intent(AddClock.this, CallAlarm.class);
+ PendingIntent sender=PendingIntent.getBroadcast(
+ AddClock.this,0, intent, 0);
+ AlarmManager am;
+ am = (AlarmManager)getSystemService(ALARM_SERVICE);
+ am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender
 
-                                );
+ );
 
-                                String tmpS=format(hourOfDay)+":"+format(minute);
-                                setTime1.setText(tmpS);
+ String tmpS=format(hourOfDay)+":"+format(minute);
+ setTime1.setText(tmpS);
 
-                                //SharedPreferences儲存資料,並提交
-                                SharedPreferences time1Share = getPreferences(0);
-                                SharedPreferences.Editor editor = time1Share.edit();
-                                editor.putString("TIME1", tmpS);
-                                editor.commit();
+ //SharedPreferences儲存資料,並提交
+ SharedPreferences time1Share = getPreferences(0);
+ SharedPreferences.Editor editor = time1Share.edit();
+ editor.putString("TIME1", tmpS);
+ editor.commit();
 
 
-                                Toast.makeText(AddClock.this,"設定Goo Time為"+tmpS,
-                                        Toast.LENGTH_SHORT)
-                                        .show();
+ Toast.makeText(AddClock.this,"設定Goo Time為"+tmpS,
+ Toast.LENGTH_SHORT)
+ .show();
  **/
-                        }
-                    },mHour,mMinute,true).show();
+                    }
+                },mHour,mMinute,true).show();
             }
         });
     }
@@ -403,51 +408,82 @@ public class AddClock extends AppCompatActivity {
             c.add(Calendar.DAY_OF_YEAR,1);
         }
 
+        if (mButton2.isChecked()){
 
-        AlarmManager am;
-        am = (AlarmManager)getSystemService(ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender);
-
-
-        setTime1.setText(tmpS);
-
-
-        Intent intent2 = new Intent(AddClock.this, MainActivity.class);
-
-        Bundle bundle = new Bundle();
-        //Clock test=new Clock(0,tmpS,spinner.getSelectedItemPosition());
-        bundle.putString("clock",Integer.toString(cnt)+","+tmpS+","+spinner.getSelectedItemPosition()+",0,");
+            mButton3.setAlpha(0.5f);
+            AlarmManager am;
+            am = (AlarmManager)getSystemService(ALARM_SERVICE);
+            am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender);
 
 
-        /**
-        SharedPreferences sharedPreferences = getSharedPreferences("data" , MODE_PRIVATE);
-        //取得SharedPreferences ， 丟入的參數為("名稱" , 存取權限)
-
-        sharedPreferences.edit().putInt("id" , position).apply();
-        //存入資料，丟入的參數為(key , value)
-
-        sharedPreferences.getInt("score" , 0);
-        //取出資料， 丟入的參數為(key , 若是沒值，預設為多少)
-**/
-
-        intent2.putExtras(bundle);
-
-        intent2.putExtra("alarm_clock",tmpS);
-        intent2.putExtra("alarm_game",game1String);
-
-        startActivity(intent2);
-
-        //Intent intent2 = new Intent(AddClock.this, MainActivity.class);
-       // intent2.putExtra("alarm_clock",tmpS);
-       //startActivity(intent2);
-
-        //SharedPreferences儲存資料,並提交
+            setTime1.setText(tmpS);
 
 
+            Intent intent2 = new Intent(AddClock.this, MainActivity.class);
 
-        Toast.makeText(AddClock.this,"設定第"+Integer.toString(cnt)+"Goo Time為"+tmpS,
-                Toast.LENGTH_SHORT)
-                .show();
+            Bundle bundle = new Bundle();
+            //Clock test=new Clock(0,tmpS,spinner.getSelectedItemPosition());
+            bundle.putString("clock",Integer.toString(cnt)+","+tmpS+","+spinner.getSelectedItemPosition()+",0,");
+
+
+            /**
+             SharedPreferences sharedPreferences = getSharedPreferences("data" , MODE_PRIVATE);
+             //取得SharedPreferences ， 丟入的參數為("名稱" , 存取權限)
+
+             sharedPreferences.edit().putInt("id" , position).apply();
+             //存入資料，丟入的參數為(key , value)
+
+             sharedPreferences.getInt("score" , 0);
+             //取出資料， 丟入的參數為(key , 若是沒值，預設為多少)
+             **/
+
+            intent2.putExtras(bundle);
+
+            intent2.putExtra("alarm_clock",tmpS);
+            intent2.putExtra("alarm_game",game1String);
+
+            startActivity(intent2);
+
+            //Intent intent2 = new Intent(AddClock.this, MainActivity.class);
+            // intent2.putExtra("alarm_clock",tmpS);
+            //startActivity(intent2);
+
+            //SharedPreferences儲存資料,並提交
+
+
+
+            Toast.makeText(AddClock.this,"設定第"+Integer.toString(cnt)+"Goo Time為"+tmpS,
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }else {
+            mButton2.setAlpha(0.5f);
+
+            AlarmManager am;
+            am = (AlarmManager)getSystemService(ALARM_SERVICE);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), am.INTERVAL_DAY, sender);
+
+            setTime1.setText(tmpS);
+
+
+            Intent intent2 = new Intent(AddClock.this, MainActivity.class);
+
+            Bundle bundle = new Bundle();
+            //Clock test=new Clock(0,tmpS,spinner.getSelectedItemPosition());
+            bundle.putString("clock",Integer.toString(cnt)+","+tmpS+","+spinner.getSelectedItemPosition()+",0,");
+
+            intent2.putExtras(bundle);
+
+            intent2.putExtra("alarm_clock",tmpS);
+            intent2.putExtra("alarm_game",game1String);
+
+            startActivity(intent2);
+
+            Toast.makeText(AddClock.this,"設定第"+Integer.toString(cnt)+"Goo Time為"+tmpS,
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }
+
+
     }
 
     //回到主畫面
@@ -457,9 +493,6 @@ public class AddClock extends AppCompatActivity {
         finish();
     }
 
-    public void choose_game(View view) {
-
-    }
 }
 
 

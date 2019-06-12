@@ -1,13 +1,12 @@
 package com.example.goo_goo_mornind;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class VoiceActivity extends AppCompatActivity {
-
+    private String sharedPrefFile ="com.example.android.hellosharedprefs";
     Random r = new Random();   // 亂數種子
     private int randomNow; // 現在取的亂數
     private TextView textView_question;
@@ -43,7 +42,12 @@ public class VoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_voice);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         startVibrator();
-
+        String mode1 = getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+                .getString("mode1", "0");
+        String mode2 = getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+                .getString("mode2", "0");
+        String mode3 = getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+                .getString("mode3", "0");
         // find view
         textView_time = findViewById(R.id.textView_alarmTime);
         imageView_cockatoo = findViewById(R.id.imageView_cockatoo);
@@ -71,10 +75,24 @@ public class VoiceActivity extends AppCompatActivity {
         //接收值
         Intent intent = getIntent();
         String time = intent.getStringExtra("alarm_clock");
+        String id = intent.getStringExtra("id");
         textView_time.setText(time);
-        Toast.makeText(VoiceActivity.this,"設定Goo Time為"+time,
-                Toast.LENGTH_SHORT)
-                .show();
+        if(id.equals("1")){
+            mode1="1";
+        }else if(id.equals("2")){
+            mode2="1";
+        }else{
+            mode3="1";
+        }
+        SharedPreferences pref = getSharedPreferences("example", MODE_PRIVATE);
+        pref.edit()
+                .putString("mode1",mode1)
+                .putString("mode2",mode2)
+                .putString("mode2",mode3)
+                .commit();
+       // Toast.makeText(VoiceActivity.this,"設定Goo Time為"+time,
+        //        Toast.LENGTH_SHORT)
+        //        .show();
         // initialize question
         String[] tmpArray = {
                 "我在天上飛",
@@ -118,6 +136,7 @@ public class VoiceActivity extends AppCompatActivity {
 
                 Intent intent2 = new Intent();
                 intent2.setClass(VoiceActivity.this , MainActivity.class);
+
                 startActivity(intent2);
                 }
 

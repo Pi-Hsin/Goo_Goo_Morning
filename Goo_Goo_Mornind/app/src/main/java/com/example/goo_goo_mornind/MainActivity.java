@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     public static  String test ;
     public static  int monster=0 ;
     public static int cnt=0;
-    public static  Clock[] clocks = new Clock[10];
+    public static String mode1 ;
+    public static String mode2 ;
+    public static String mode3 ;
     private SharedPreferences mPreferences;
     private String sharedPrefFile ="com.example.android.hellosharedprefs";
     @Override
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     //mTextView.setAlpha(1f);
 
                 }else{
+                    mode1="1";
                     monster++;
                     //關掉
                     Intent intent = new Intent(MainActivity.this, CallAlarm.class);
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         //取消鬧鐘
         toggleButton2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     //mTextView.setAlpha(1f);
 
                 }else{
+                    mode2="1";
                     monster++;
                     //關掉
                     Intent intent = new Intent(MainActivity.this, CallAlarm.class);
@@ -115,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     //mTextView.setAlpha(1f);
 
                 }else{
+                    mode3="1";
                     monster++;
                     //關掉
                     Intent intent = new Intent(MainActivity.this, CallAlarm.class);
@@ -129,36 +135,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        String fmode="0";
-        if(toggleButton1.isChecked()){
 
-        }else{
-            fmode="1";
-        }
        // Restore preferences
         test=(mPreferences.getString("Arraylist",""));
         cnt=(mPreferences.getInt("cnt",0));
         monster=(mPreferences.getInt("monster",0));
+        mode1=(mPreferences.getString("mode1","0"));
+        mode2=(mPreferences.getString("mode2","0"));
+        mode3=(mPreferences.getString("mode3","0"));
+
         if(monster==2){
             button.setVisibility(View.INVISIBLE);
         }
         String[] tmp1=test.split(",");
-
-        Toast.makeText(MainActivity.this, Integer.toString(cnt), Toast.LENGTH_SHORT)
-                .show();
+        //Toast.makeText(MainActivity.this, Integer.toString(cnt), Toast.LENGTH_SHORT) .show();
         //原本有一個鬧鐘
         if(cnt==1){
             String id=tmp1[0];
             String time=tmp1[1];
             String type=tmp1[2];
             String mode=tmp1[3];
-            Toast.makeText(MainActivity.this,"mode="+mode, Toast.LENGTH_SHORT).show();
-
             alerm1.setVisibility(View.VISIBLE);
             textView1.setVisibility(View.VISIBLE);
             toggleButton1.setVisibility(View.VISIBLE);
             textView1.setText(time);
-            mode=fmode;
 
             if(type.equals("0")){
                 toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
@@ -167,12 +167,19 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
             }
+            String userid1 = getSharedPreferences("sharedPrefFile", MODE_PRIVATE)
+                    .getString("mode1", "0");
             //響過
-            if(mode.equals("1")){
+
+            if(userid1.equals("1")){
                 alerm1.setAlpha(0.5f);
                 textView1.setAlpha(0.5f);
             }
-            Toast.makeText(MainActivity.this, "yaya"+mode, Toast.LENGTH_SHORT)
+            if(mode1.equals("1")){
+                alerm1.setAlpha(0.5f);
+                textView1.setAlpha(0.5f);
+            }
+            Toast.makeText(MainActivity.this, "yaya"+mode1, Toast.LENGTH_SHORT)
                     .show();
         //原本有二個鬧鐘
         }else if(cnt==2) {
@@ -180,18 +187,10 @@ public class MainActivity extends AppCompatActivity {
             String time=tmp1[1];
             String type=tmp1[2];
             String mode=tmp1[3];
-            clocks[0].mid=id;
-            clocks[0].mtime=time;
-            clocks[0].mtype=type;
-            clocks[0].mmode=mode;
             String id2 = tmp1[0+4];
             String time2 = tmp1[1+4];
             String type2 = tmp1[2+4];
             String mode2 = tmp1[3+4];
-            clocks[1].mid=id2;
-            clocks[1].mtime=time2;
-            clocks[1].mtype=type2;
-            clocks[1].mmode=mode2;
             alerm1.setVisibility(View.VISIBLE);
             textView1.setVisibility(View.VISIBLE);
             toggleButton1.setVisibility(View.VISIBLE);
@@ -204,8 +203,14 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
             }
+            String userid1 = getSharedPreferences("sharedPrefFile", MODE_PRIVATE)
+                    .getString("mode1", "0");
             //響過
-            if(mode.equals("1")){
+            if(userid1.equals("1")){
+                alerm1.setAlpha(0.5f);
+                textView1.setAlpha(0.5f);
+            }
+            if(mode1.equals("1")){
                 alerm1.setAlpha(0.5f);
                 textView1.setAlpha(0.5f);
             }
@@ -221,39 +226,35 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
             }
+            String userid2 = getSharedPreferences("sharedPrefFile", MODE_PRIVATE)
+                    .getString("mode2", "0");
             //響過
+            if(userid2.equals("1")){
+                alerm2.setAlpha(0.5f);
+                textView2.setAlpha(0.5f);
+            }
             if(mode2.equals("1")){
                 alerm2.setAlpha(0.5f);
                 textView2.setAlpha(0.5f);
             }
-            Toast.makeText(MainActivity.this, clocks[0].mtime+clocks[1].mtime, Toast.LENGTH_SHORT)
-                    .show();
+
             //原本有三個鬧鐘
         }else if(cnt==3) {
             String id=tmp1[0];
             String time=tmp1[1];
             String type=tmp1[2];
             String mode=tmp1[3];
-            clocks[0].mid=id;
-            clocks[0].mtime=time;
-            clocks[0].mtype=type;
-            clocks[0].mmode=mode;
+
             String id2 = tmp1[0+4];
             String time2 = tmp1[1+4];
             String type2 = tmp1[2+4];
             String mode2 = tmp1[3+4];
-            clocks[1].mid=id2;
-            clocks[1].mtime=time2;
-            clocks[1].mtype=type2;
-            clocks[1].mmode=mode2;
+
             String id3 = tmp1[0+4*2];
             String time3 = tmp1[1+4*2];
             String type3 = tmp1[2+4*2];
             String mode3 = tmp1[3+4*2];
-            clocks[2].mid=id3;
-            clocks[2].mtime=time3;
-            clocks[2].mtype=type3;
-            clocks[2].mmode=mode3;
+
             alerm1.setVisibility(View.VISIBLE);
             textView1.setVisibility(View.VISIBLE);
             toggleButton1.setVisibility(View.VISIBLE);
@@ -266,8 +267,14 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
             }
+            String userid1 = getSharedPreferences("sharedPrefFile", MODE_PRIVATE)
+                    .getString("mode1", "0");
             //響過
-            if(mode.equals("1")){
+            if(userid1.equals("1")){
+                alerm1.setAlpha(0.5f);
+                textView1.setAlpha(0.5f);
+            }
+            if(mode1.equals("1")){
                 alerm1.setAlpha(0.5f);
                 textView1.setAlpha(0.5f);
             }
@@ -283,7 +290,13 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
             }
+            String userid2 = getSharedPreferences("sharedPrefFile", MODE_PRIVATE)
+                    .getString("mode2", "0");
             //響過
+            if(userid2.equals("1")){
+                alerm2.setAlpha(0.5f);
+                textView2.setAlpha(0.5f);
+            }
             if(mode2.equals("1")){
                 alerm2.setAlpha(0.5f);
                 textView2.setAlpha(0.5f);
@@ -300,13 +313,18 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 toggleButton3.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
             }
+            String userid3 = getSharedPreferences("sharedPrefFile", MODE_PRIVATE)
+                    .getString("mode3", "0");
             //響過
+            if(userid3.equals("1")){
+                alerm3.setAlpha(0.5f);
+                textView3.setAlpha(0.5f);
+            }
             if(mode3.equals("1")){
                 alerm3.setAlpha(0.5f);
                 textView3.setAlpha(0.5f);
             }
-             Toast.makeText(MainActivity.this, clocks[0].mtime+clocks[1].mtime+clocks[2].mtime, Toast.LENGTH_SHORT)
-                    .show();
+
         }
 
         //addClock傳來的值
@@ -318,9 +336,14 @@ public class MainActivity extends AppCompatActivity {
             String time=x[1];
             String type=x[2];
             String mode=x[3];
-            Clock y=new Clock(id,time,type,mode);
+            mPreferences.edit()
+                    .putString("mode1",mode1)
+                    .putString("mode2",mode2)
+                    .putString("mode2",mode3)
+
+            .commit();
             test+=tmp;
-            clocks[cnt]=y;
+
             if(cnt==0){
                 alerm1.setVisibility(View.VISIBLE);
                 textView1.setVisibility(View.VISIBLE);
@@ -363,8 +386,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            Toast.makeText(MainActivity.this, clocks[cnt].mtime, Toast.LENGTH_SHORT)
-                    .show();
             cnt++;
         }else{
 
@@ -396,6 +417,9 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putString("Arraylist", test);
         preferencesEditor.putInt("cnt", cnt);
         preferencesEditor.putInt("monster", monster);
+        preferencesEditor.putString("mode1", mode1);
+        preferencesEditor.putString("mode2", mode2);
+        preferencesEditor.putString("mode3", mode3);
         preferencesEditor.apply();
     }
     @Override
@@ -405,6 +429,9 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putString("Arraylist", test);
         preferencesEditor.putInt("cnt", cnt);
         preferencesEditor.putInt("monster", monster);
+        preferencesEditor.putString("mode1", mode1);
+        preferencesEditor.putString("mode2", mode2);
+        preferencesEditor.putString("mode3", mode3);
         preferencesEditor.apply();
         //Toast.makeText(this, "onStop", Toast.LENGTH_LONG).show();
     }
@@ -416,7 +443,11 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putString("Arraylist", "");
         preferencesEditor.putInt("cnt", 0);
         preferencesEditor.putInt("monster", 0);
+        preferencesEditor.putString("mode1", "0");
+        preferencesEditor.putString("mode2", "0");
+        preferencesEditor.putString("mode3", "0");
         preferencesEditor.apply();
         //Toast.makeText(this, "onDestroy", Toast.LENGTH_LONG).show();
     }
+
 }

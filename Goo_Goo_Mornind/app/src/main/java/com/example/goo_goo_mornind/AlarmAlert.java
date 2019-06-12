@@ -3,12 +3,9 @@ package com.example.goo_goo_mornind;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
@@ -26,6 +23,7 @@ public class AlarmAlert extends Activity {
         Bundle bundle = getIntent().getExtras();
         String time=bundle.getString("time");
         String type=bundle.getString("type");
+        String id=bundle.getString("id");
         //startMedia();//播放音樂
 
 
@@ -36,14 +34,17 @@ public class AlarmAlert extends Activity {
         if(type.equals("1")) {
             Intent intent2 = new Intent(AlarmAlert.this, VoiceActivity.class);
             intent2.putExtra("alarm_clock", time);
+            intent2.putExtra("id", id);
             startActivity(intent2);
         }else if(type.equals("0")){
             Intent intent3= new Intent(AlarmAlert.this, ShakeActivity.class);
             intent3.putExtra("alarm_clock", time);
+            intent3.putExtra("id", id);
             startActivity(intent3);
         }else{
             Intent intent4= new Intent(AlarmAlert.this, NormalActivity.class);
             intent4.putExtra("alarm_clock", time);
+            intent4.putExtra("id", id);
             startActivity(intent4);
         }
 /*

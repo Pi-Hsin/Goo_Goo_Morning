@@ -2,29 +2,60 @@ package com.example.goo_goo_mornind;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class NormalActivity extends AppCompatActivity {
     private ImageView moveImage;
     private RelativeLayout mRelativeLayout;
     private Button ivb;//imageView_closeButton
     private MediaPlayer mediaPlayer;
-
+    private String sharedPrefFile ="com.example.android.hellosharedprefs";
+    private TextView textView_alarmTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal);
         ivb = (Button)findViewById(R.id.imageView_closeButton);
+        textView_alarmTime=findViewById(R.id.textView_alarmTime);
         ivb.setVisibility(View.INVISIBLE);
+        String mode1 = getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+                .getString("mode1", "0");
+        String mode2 = getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+                .getString("mode2", "0");
+        String mode3 = getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+                .getString("mode3", "0");
+
+        //接收值
+        Intent intent = getIntent();
+        String time = intent.getStringExtra("alarm_clock");
+        String id = intent.getStringExtra("id");
+        textView_alarmTime.setText(time);
+        if(id.equals("1")){
+            mode1="1";
+        }else if(id.equals("2")){
+            mode2="1";
+        }else{
+            mode3="1";
+        }
+        SharedPreferences pref = getSharedPreferences("sharedPrefFile", MODE_PRIVATE);
+        pref.edit()
+                .putString("mode1",mode1)
+                .putString("mode2",mode2)
+                .putString("mode2",mode3)
+                .commit();
+
+
 
         ivb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +81,7 @@ public class NormalActivity extends AppCompatActivity {
         ani.start();
 
         //加入音樂
-        mediaPlayer = MediaPlayer.create(this,R.raw.alarm1);
+        mediaPlayer = MediaPlayer.create(this, R.raw.alarm1);
         mediaPlayer.start();
     }
 

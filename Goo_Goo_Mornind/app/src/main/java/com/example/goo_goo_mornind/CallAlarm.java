@@ -1,13 +1,9 @@
 package com.example.goo_goo_mornind;
 
-import android.content.Context;
-
-import android.content.Intent;
-
 import android.content.BroadcastReceiver;
-
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-
 
 
 public class CallAlarm extends BroadcastReceiver
@@ -30,6 +26,7 @@ public class CallAlarm extends BroadcastReceiver
         bundleRet.putString("STR_CALLER", "");
         bundleRet.putString("time",intent.getStringExtra("time"));
         bundleRet.putString("type",intent.getStringExtra("type"));
+        bundleRet.putString("id",intent.getStringExtra("id"));
 
         i.putExtras(bundleRet);
 

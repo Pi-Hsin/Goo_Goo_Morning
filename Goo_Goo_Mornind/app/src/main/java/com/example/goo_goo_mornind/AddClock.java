@@ -162,9 +162,6 @@ package com.example.goo_goo_mornind;
 
  }**/
 
-import java.util.Calendar;
-import java.util.HashMap;
-
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -173,24 +170,21 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import java.util.Calendar;
 
 
 public class AddClock extends AppCompatActivity {
@@ -398,6 +392,8 @@ public class AddClock extends AppCompatActivity {
 
         intent.putExtra("time",tmpS);
         intent.putExtra("type",spinner.getSelectedItemPosition()+"");
+        intent.putExtra("id",Integer.toString(cnt));
+
 
 
         PendingIntent sender=PendingIntent.getBroadcast(

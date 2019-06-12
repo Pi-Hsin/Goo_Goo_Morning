@@ -80,8 +80,8 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
         //ani.start();
 
         //加入音樂
-       // mediaPlayer = MediaPlayer.create(this,R.raw.alarm1);
-        //mediaPlayer.start();
+       mediaPlayer = MediaPlayer.create(this,R.raw.alarm1);
+       mediaPlayer.start();
     }
 
     @Override
@@ -92,9 +92,9 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
             float y = Float.valueOf(event.values[1]);
             float z = Float.valueOf(event.values[2]);
 
-            mX.setText("X: "+String.valueOf(x));
-            mY.setText("Y: "+String.valueOf(y));
-            mZ.setText("Z: "+String.valueOf(z));
+            //mX.setText("X: "+String.valueOf(x));
+            //mY.setText("Y: "+String.valueOf(y));
+            //mZ.setText("Z: "+String.valueOf(z));
 
             // SensorManager.GRAVITY_EARTH 約為 10
             float gX = x / SensorManager.GRAVITY_EARTH;

@@ -246,11 +246,11 @@ public class AddClock extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText(AddClock.this, "你選的是" + game[position], Toast.LENGTH_SHORT).show();
-                if(game[position]=="體感遊戲"){
+                if(game[position]=="跟著貓頭鷹搖起來"){
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.owl));
                     game1String="1";
                     Toast.makeText(AddClock.this, "你選的是" + game[position], Toast.LENGTH_SHORT).show();
-                }else if(game[position]=="繞口令遊戲"){
+                }else if(game[position]=="跟著鸚鵡講鳥話"){
                     imageView_select.setImageDrawable( getResources().getDrawable(R.drawable.cockatoo));
                     game1String="2";
                     Toast.makeText(AddClock.this, "你選的是" + game[position], Toast.LENGTH_SHORT).show();

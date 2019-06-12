@@ -80,8 +80,8 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
         //ani.start();
 
         //加入音樂
-        mediaPlayer = MediaPlayer.create(this,R.raw.alarm1);
-        mediaPlayer.start();
+       // mediaPlayer = MediaPlayer.create(this,R.raw.alarm1);
+        //mediaPlayer.start();
     }
 
     @Override

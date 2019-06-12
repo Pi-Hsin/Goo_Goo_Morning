@@ -1,33 +1,30 @@
 package com.example.goo_goo_mornind;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-
 import android.widget.Toast;
-
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
+import android.widget.ToggleButton;
 
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
+    private ImageView alerm1;
+    private ImageView alerm2;
+    private ImageView alerm3;
     private Button button;
-    private static MyAdapter mAdapter;
+    private TextView textView1;
+    private TextView textView2;
+    private TextView textView3;
+    private ToggleButton toggleButton1;
+    private ToggleButton toggleButton2;
+    private ToggleButton toggleButton3;
     public static  String test ;
     public static int cnt=0;
-    public static   ArrayList<String> myDataset=new ArrayList<>();
     public static  Clock[] clocks = new Clock[10];
     private SharedPreferences mPreferences;
     private String sharedPrefFile ="com.example.android.hellosharedprefs";
@@ -35,8 +32,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        alerm1=findViewById(R.id.imageView_alerm1);
+        alerm2=findViewById(R.id.imageView_alerm2);
+        alerm3=findViewById(R.id.imageView_alerm3);
+        textView1=findViewById(R.id.textView_alarmTime1);
+        textView2=findViewById(R.id.textView_alarmTime2);
+        textView3=findViewById(R.id.textView_alarmTime3);
+        toggleButton1=findViewById(R.id.toggleButton1);
+        toggleButton2=findViewById(R.id.toggleButton2);
+        toggleButton3=findViewById(R.id.toggleButton3);
+        alerm1.setVisibility(View.INVISIBLE);
+        alerm2.setVisibility(View.INVISIBLE);
+        alerm3.setVisibility(View.INVISIBLE);
+        textView1.setVisibility(View.INVISIBLE);
+        textView2.setVisibility(View.INVISIBLE);
+        textView3.setVisibility(View.INVISIBLE);
+        toggleButton1.setVisibility(View.INVISIBLE);
+        toggleButton2.setVisibility(View.INVISIBLE);
+        toggleButton3.setVisibility(View.INVISIBLE);
         button=(Button)findViewById(R.id.Button);
         // Initialize preferences
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
@@ -57,10 +70,17 @@ public class MainActivity extends AppCompatActivity {
             clocks[0].mtime=time;
             clocks[0].mtype=type;
             clocks[0].mmode=mode;
-            myDataset.add(1,test);
-            Clock y=new Clock(id,time,type,mode);
-            mAdapter = new MyAdapter(myDataset,MainActivity.this,y);
-            mRecyclerView.setAdapter(mAdapter);
+            alerm1.setVisibility(View.VISIBLE);
+            textView1.setVisibility(View.VISIBLE);
+            toggleButton1.setVisibility(View.VISIBLE);
+            textView1.setText(time);
+            if(type.equals("0")){
+                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
+            }else if(type.equals("1")){
+                toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
+            }else{
+                toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+            }
             Toast.makeText(MainActivity.this, clocks[0].mtime, Toast.LENGTH_SHORT)
                     .show();
         //原本有二個鬧鐘
@@ -81,6 +101,28 @@ public class MainActivity extends AppCompatActivity {
             clocks[1].mtime=time2;
             clocks[1].mtype=type2;
             clocks[1].mmode=mode2;
+            alerm1.setVisibility(View.VISIBLE);
+            textView1.setVisibility(View.VISIBLE);
+            toggleButton1.setVisibility(View.VISIBLE);
+            textView1.setText(time);
+            if(type.equals("0")){
+                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
+            }else if(type.equals("1")){
+                toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
+            }else{
+                toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+            }
+            alerm2.setVisibility(View.VISIBLE);
+            textView2.setVisibility(View.VISIBLE);
+            toggleButton2.setVisibility(View.VISIBLE);
+            textView2.setText(time2);
+            if(type2.equals("0")){
+                toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
+            }else if(type2.equals("1")){
+                toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
+            }else{
+                toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+            }
             Toast.makeText(MainActivity.this, clocks[0].mtime+clocks[1].mtime, Toast.LENGTH_SHORT)
                     .show();
             //原本有三個鬧鐘
@@ -109,6 +151,39 @@ public class MainActivity extends AppCompatActivity {
             clocks[2].mtime=time3;
             clocks[2].mtype=type3;
             clocks[2].mmode=mode3;
+            alerm1.setVisibility(View.VISIBLE);
+            textView1.setVisibility(View.VISIBLE);
+            toggleButton1.setVisibility(View.VISIBLE);
+            textView1.setText(time);
+            if(type.equals("0")){
+                toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
+            }else if(type.equals("1")){
+                toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
+            }else{
+                toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+            }
+            alerm2.setVisibility(View.VISIBLE);
+            textView2.setVisibility(View.VISIBLE);
+            toggleButton2.setVisibility(View.VISIBLE);
+            textView2.setText(time2);
+            if(type2.equals("0")){
+                toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
+            }else if(type2.equals("1")){
+                toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
+            }else{
+                toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+            }
+            alerm3.setVisibility(View.VISIBLE);
+            textView3.setVisibility(View.VISIBLE);
+            toggleButton3.setVisibility(View.VISIBLE);
+            textView3.setText(time3);
+            if(type3.equals("0")){
+                toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
+            }else if(type3.equals("1")){
+                toggleButton3.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
+            }else{
+                toggleButton3.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+            }
              Toast.makeText(MainActivity.this, clocks[0].mtime+clocks[1].mtime+clocks[2].mtime, Toast.LENGTH_SHORT)
                     .show();
         }
@@ -125,17 +200,59 @@ public class MainActivity extends AppCompatActivity {
             Clock y=new Clock(id,time,type,mode);
             test+=tmp;
             clocks[cnt]=y;
+            if(cnt==0){
+                alerm1.setVisibility(View.VISIBLE);
+                textView1.setVisibility(View.VISIBLE);
+                toggleButton1.setVisibility(View.VISIBLE);
+                textView1.setText(time);
+                if(type.equals("0")){
+                    toggleButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
+                }else if(type.equals("1")){
+                    toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
+                }else{
+                    toggleButton1.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+                }
+            }else if(cnt==1){
+                alerm2.setVisibility(View.VISIBLE);
+                textView2.setVisibility(View.VISIBLE);
+                toggleButton2.setVisibility(View.VISIBLE);
+                textView2.setText(time);
+                if(type.equals("0")){
+                    toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
+                }else if(type.equals("1")){
+                    toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
+                }else{
+                    toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+                }
+            }else  if(cnt==1){
+                alerm2.setVisibility(View.VISIBLE);
+                textView2.setVisibility(View.VISIBLE);
+                toggleButton2.setVisibility(View.VISIBLE);
+                textView2.setText(time);
+                if(type.equals("0")){
+                    toggleButton2.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
+                }else if(type.equals("1")){
+                    toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.cockatoo));
+                }else{
+                    toggleButton2.setBackgroundDrawable( getResources().getDrawable(R.drawable.normal));
+                }
+            }else  if(cnt==2) {
+                alerm3.setVisibility(View.VISIBLE);
+                textView3.setVisibility(View.VISIBLE);
+                toggleButton3.setVisibility(View.VISIBLE);
+                textView3.setText(time);
+                if (type.equals("0")) {
+                    toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.owl));
+                } else if (type.equals("1")) {
+                    toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.cockatoo));
+                } else {
+                    toggleButton3.setBackgroundDrawable(getResources().getDrawable(R.drawable.normal));
+                }
+            }
 
             Toast.makeText(MainActivity.this, clocks[cnt].mtime, Toast.LENGTH_SHORT)
                     .show();
-            myDataset.add(cnt++,tmp);
-
-
-            mAdapter = new MyAdapter(myDataset,MainActivity.this,y);
-            final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-            mRecyclerView.setLayoutManager(layoutManager);
-            mRecyclerView.setAdapter(mAdapter);
+            cnt++;
         }else{
 
         }
@@ -180,6 +297,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+        preferencesEditor.putString("Arraylist", test);
+        preferencesEditor.putInt("cnt", cnt);
+        preferencesEditor.apply();
         //Toast.makeText(this, "onDestroy", Toast.LENGTH_LONG).show();
     }
 }

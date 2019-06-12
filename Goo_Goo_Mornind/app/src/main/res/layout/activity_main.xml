@@ -35,26 +35,35 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rnd" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="536dp"
-        android:layout_margin="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/ToggleButton"
+    <ImageView
+        android:id="@+id/imageView_alerm1"
+        android:layout_width="291dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_appName"
-        app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/recyclerview_alerm">
+        app:srcCompat="@drawable/alarmbg_1" />
 
-    </android.support.v7.widget.RecyclerView>
+    <ImageView
+        android:id="@+id/imageView_alerm2"
+        android:layout_width="291dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_alerm1"
+        app:srcCompat="@drawable/alarmbg_1" />
+
+    <ImageView
+        android:id="@+id/imageView_alerm3"
+        android:layout_width="291dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_alerm2"
+        app:srcCompat="@drawable/alarmbg_1" />
 
     <Button
         android:id="@+id/Button"
@@ -67,6 +76,100 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.953" />
+
+    <TextView
+        android:id="@+id/textView_alarmTime1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="06:00"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_alerm1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.376"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView_alerm1"
+        app:layout_constraintVertical_bias="0.375" />
+
+    <TextView
+        android:id="@+id/textView_alarmTime2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="06:00"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_alerm2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.376"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView_alerm2"
+        app:layout_constraintVertical_bias="0.454" />
+
+    <TextView
+        android:id="@+id/textView_alarmTime3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="06:00"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_alerm3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.376"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView_alerm3"
+        app:layout_constraintVertical_bias="0.454" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton1"
+        android:layout_width="77dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/cockatoo_q"
+        android:checked="true"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_alerm1"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_alerm1"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toEndOf="@+id/textView_alarmTime1"
+        app:layout_constraintTop_toTopOf="@+id/imageView_alerm1" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton2"
+        android:layout_width="77dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/cockatoo_q"
+        android:checked="true"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_alerm2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_alerm2"
+        app:layout_constraintStart_toEndOf="@+id/textView_alarmTime3"
+        app:layout_constraintTop_toTopOf="@+id/imageView_alerm2" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton3"
+        android:layout_width="77dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/cockatoo_q"
+        android:checked="true"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_alerm3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_alarmTime3"
+        app:layout_constraintTop_toTopOf="@+id/imageView_alerm3" />
 
 
 </android.support.constraint.ConstraintLayout>

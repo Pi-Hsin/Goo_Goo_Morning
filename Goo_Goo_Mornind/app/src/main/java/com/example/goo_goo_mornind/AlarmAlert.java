@@ -21,7 +21,7 @@ public class AlarmAlert extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        //vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         //tBtn_vib = (ToggleButton) findViewById(R.id.toggle_button1);
         Bundle bundle = getIntent().getExtras();
         String time=bundle.getString("time");
@@ -29,7 +29,7 @@ public class AlarmAlert extends Activity {
         //startMedia();//播放音樂
 
 
-        startVibrator();
+        //startVibrator();
 
 
         //startVibrator();

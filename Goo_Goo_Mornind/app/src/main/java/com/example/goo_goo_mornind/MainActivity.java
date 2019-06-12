@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         //關掉
                         Intent intent = new Intent(MainActivity.this, CallAlarm.class);
                         PendingIntent sender=PendingIntent.getBroadcast(
-                                MainActivity.this,0, intent, 0);
+                                MainActivity.this,1, intent, 0);
                         AlarmManager am;
                         am =(AlarmManager)getSystemService(ALARM_SERVICE);
                         am.cancel(sender);
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                         //關掉
                         Intent intent = new Intent(MainActivity.this, CallAlarm.class);
                         PendingIntent sender=PendingIntent.getBroadcast(
-                                MainActivity.this,0, intent, 0);
+                                MainActivity.this,2, intent, 0);
                         AlarmManager am;
                         am =(AlarmManager)getSystemService(ALARM_SERVICE);
                         am.cancel(sender);
@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
                         //關掉
                         Intent intent = new Intent(MainActivity.this, CallAlarm.class);
                         PendingIntent sender=PendingIntent.getBroadcast(
-                                MainActivity.this,0, intent, 0);
+                                MainActivity.this,3, intent, 0);
                         AlarmManager am;
                         am =(AlarmManager)getSystemService(ALARM_SERVICE);
                         am.cancel(sender);

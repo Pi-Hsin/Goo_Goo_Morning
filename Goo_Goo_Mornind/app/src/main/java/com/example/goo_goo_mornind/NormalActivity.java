@@ -29,6 +29,7 @@ public class NormalActivity extends AppCompatActivity {
         ivb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayer.stop();
                 Intent intent2 = new Intent();
                 intent2.setClass(NormalActivity.this , MainActivity.class);
                 startActivity(intent2);

@@ -3,6 +3,7 @@ package com.example.goo_goo_mornind;
 import android.animation.ArgbEvaluator;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,7 +27,10 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
     private SectionsPagerAdapter mSectionsPagerAdapter;
     // 設定過渡顏色的Array，數量是總頁數+1
     private int[] colors = {Color.parseColor("#ff9a96"), Color.parseColor("#74ceff"), Color.parseColor("#f1ce40"),
-            Color.parseColor("#5b183f"), Color.parseColor("#ddeba1")};
+            Color.parseColor("#5b183f"), Color.parseColor("#ddeba1"),Color.parseColor("#ff9a96"), Color.parseColor("#74ceff"), Color.parseColor("#f1ce40"),
+            Color.parseColor("#5b183f"), Color.parseColor("#ddeba1"),Color.parseColor("#ff9a96"), Color.parseColor("#74ceff"), Color.parseColor("#f1ce40"),
+            Color.parseColor("#5b183f"), Color.parseColor("#ddeba1"),Color.parseColor("#ff9a96"), Color.parseColor("#74ceff"), Color.parseColor("#f1ce40"),
+            Color.parseColor("#5b183f")};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +70,12 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
             public void onPageSelected(int position) {
                 // 對應每個頁面時，textView就做相對應處理。並將IndicatorView的顯示，指定該頁面
                 mTextSkip.setVisibility(position > 1 ? View.GONE : View.VISIBLE);
-                mTextNext.setText(position > 1 ? "START" : "NEXT");
+                if(position!=17){
+                    mTextNext.setText("NEXT");
+                }else{
+                    mTextNext.setText("START");
+                }
+
                 mRZIndicatorView.setCurPositon(position, false);
             }
 
@@ -82,7 +91,7 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
         mTextNext.setOnClickListener(this);
         // 自定義的Indicator View
         mRZIndicatorView = (RZIndicatorView) findViewById(R.id.mRZIndicatorView);
-        mRZIndicatorView.setIndiCount(3);
+        mRZIndicatorView.setIndiCount(18);
         mRZIndicatorView.setIndicatorColor(Color.WHITE);
         mRZIndicatorView.setCurPositon(0, true);
     }
@@ -97,7 +106,7 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.mTextNext:
                 int position = mViewPager.getCurrentItem();
-                if (position == 0 || position == 1) {
+                if (position != 17) {
                     mViewPager.setCurrentItem(position + 1);
                 } else {
                     finish();
@@ -111,7 +120,12 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
     public static class PlaceholderFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
         // 每頁的圖片
-        private int[] logos = {R.drawable.ggmbg, R.drawable.ggmbg, R.drawable.ggmbg};
+
+        private int[] logos = {R.drawable.ggmloading, R.drawable.ggmmain, R.drawable.ggmnormal,
+                R.drawable.ggmnormal_1, R.drawable.ggmnormal_2, R.drawable.ggmnormalteaching, R.drawable.ggmsetting,
+                R.drawable.setteaching1, R.drawable.setteaching2, R.drawable.setteaching3, R.drawable.setteaching4,
+                R.drawable.ggmgame1, R.drawable.ggmgame1_f, R.drawable.ggmgame1teaching, R.drawable.ggmgame2_1,
+                R.drawable.ggmgame2_2, R.drawable.ggmgame2_3, R.drawable.ggmgame2teaching};
 
         public PlaceholderFragment() {
         }
@@ -151,7 +165,7 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 18;
         }
 
         @Override
@@ -163,6 +177,38 @@ public class OnboardingActivity extends AppCompatActivity implements View.OnClic
                     return "SECTION 2";
                 case 2:
                     return "SECTION 3";
+                case 3:
+                    return "SECTION 4";
+                case 4:
+                    return "SECTION 5";
+                case 5:
+                    return "SECTION 6";
+                case 6:
+                    return "SECTION 7";
+                case 7:
+                    return "SECTION 8";
+                case 8:
+                    return "SECTION 9";
+                case 9:
+                    return "SECTION 10";
+                case 10:
+                    return "SECTION 11";
+                case 11:
+                    return "SECTION 12";
+                case 12:
+                    return "SECTION 13";
+                case 13:
+                    return "SECTION 14";
+                case 14:
+                    return "SECTION 15";
+                case 15:
+                    return "SECTION 16";
+                case 16:
+                    return "SECTION 17";
+                case 17:
+                    return "SECTION 18";
+
+
             }
             return null;
         }

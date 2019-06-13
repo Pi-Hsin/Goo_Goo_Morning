@@ -36,8 +36,10 @@ public class VoiceActivity extends AppCompatActivity {
     private TextView textView_time;
     private Vibrator vibrator;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
@@ -72,6 +74,8 @@ public class VoiceActivity extends AppCompatActivity {
         textView_goodmorning.setVisibility(View.INVISIBLE);
         button_closeButton.setVisibility(View.INVISIBLE);
 
+
+
         //接收值
         Intent intent = getIntent();
         String time = intent.getStringExtra("alarm_clock");
@@ -88,8 +92,9 @@ public class VoiceActivity extends AppCompatActivity {
         pref.edit()
                 .putString("mode1",mode1)
                 .putString("mode2",mode2)
-                .putString("mode2",mode3)
-                .commit();
+                .putString("mode3",mode3)
+                .apply();
+
        // Toast.makeText(VoiceActivity.this,"設定Goo Time為"+time,
         //        Toast.LENGTH_SHORT)
         //        .show();
@@ -136,6 +141,7 @@ public class VoiceActivity extends AppCompatActivity {
 
                 Intent intent2 = new Intent();
                 intent2.setClass(VoiceActivity.this , MainActivity.class);
+
 
                 startActivity(intent2);
                 }

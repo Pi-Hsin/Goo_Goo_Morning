@@ -52,8 +52,8 @@ public class NormalActivity extends AppCompatActivity {
         pref.edit()
                 .putString("mode1",mode1)
                 .putString("mode2",mode2)
-                .putString("mode2",mode3)
-                .commit();
+                .putString("mode3",mode3)
+                .apply();
 
 
 

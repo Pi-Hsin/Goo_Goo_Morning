@@ -339,9 +339,10 @@ public class MainActivity extends AppCompatActivity {
             mPreferences.edit()
                     .putString("mode1",mode1)
                     .putString("mode2",mode2)
-                    .putString("mode2",mode3)
+                    .putString("mode3",mode3)
 
-            .commit();
+            .apply();
+
             test+=tmp;
 
             if(cnt==0){

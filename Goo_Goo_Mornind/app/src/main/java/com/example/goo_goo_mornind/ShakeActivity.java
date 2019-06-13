@@ -2,6 +2,7 @@ package com.example.goo_goo_mornind;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -19,6 +20,7 @@ import java.util.Random;
 
 public class ShakeActivity extends AppCompatActivity implements SensorEventListener {
 
+    private String sharedPrefFile ="com.example.android.hellosharedprefs";
     private SensorManager mSensorMgr;
     private Sensor accelerometer;
     private static final float SHAKE_THRESHOLD_GRAVITY = 2.7F;
@@ -47,9 +49,18 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shake);
         mtime = findViewById(R.id.textView_alarmTime);
+
+        String mode1 = getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+                .getString("mode1", "0");
+        String mode2 = getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+                .getString("mode2", "0");
+        String mode3 = getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+                .getString("mode3", "0");
+
         //接收值
         Intent intent = getIntent();
         String time = intent.getStringExtra("alarm_clock");
+        String id = intent.getStringExtra("id");
         mtime.setText(time);
         Toast.makeText(ShakeActivity.this,"設定Goo Time為"+time,
                 Toast.LENGTH_SHORT)
@@ -82,6 +93,20 @@ public class ShakeActivity extends AppCompatActivity implements SensorEventListe
         //加入音樂
        mediaPlayer = MediaPlayer.create(this,R.raw.alarm1);
        mediaPlayer.start();
+
+        if(id.equals("1")){
+            mode1="1";
+        }else if(id.equals("2")){
+            mode2="1";
+        }else{
+            mode3="1";
+        }
+        SharedPreferences pref = getSharedPreferences("example", MODE_PRIVATE);
+        pref.edit()
+                .putString("mode1",mode1)
+                .putString("mode2",mode2)
+                .putString("mode2",mode3)
+                .apply();
     }
 
     @Override

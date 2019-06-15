@@ -179,8 +179,8 @@ public class MainActivity extends AppCompatActivity {
                 alerm1.setAlpha(0.5f);
                 textView1.setAlpha(0.5f);
             }
-            Toast.makeText(MainActivity.this, "yaya"+mode1, Toast.LENGTH_SHORT)
-                    .show();
+            //Toast.makeText(MainActivity.this, "yaya"+mode1, Toast.LENGTH_SHORT)
+            //        .show();
         //原本有二個鬧鐘
         }else if(cnt==2) {
             String id=tmp1[0];
@@ -237,9 +237,11 @@ public class MainActivity extends AppCompatActivity {
                 alerm2.setAlpha(0.5f);
                 textView2.setAlpha(0.5f);
             }
+            button.setVisibility(View.INVISIBLE);
 
             //原本有三個鬧鐘
         }else if(cnt==3) {
+            button.setVisibility(View.INVISIBLE);
             String id=tmp1[0];
             String time=tmp1[1];
             String type=tmp1[2];
@@ -399,8 +401,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(this , AddClock.class);
         intent.putExtra("cnt",cnt);
-        Toast.makeText(MainActivity.this, Integer.toString(cnt), Toast.LENGTH_SHORT)
-                .show();
+        //Toast.makeText(MainActivity.this, Integer.toString(cnt), Toast.LENGTH_SHORT)
+        //        .show();
         startActivity(intent);
     }
     //導覽頁

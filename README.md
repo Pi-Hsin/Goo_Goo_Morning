@@ -1,4 +1,4 @@
-﻿# NCKU 107_Android APP Development Final Project
+# NCKU 107_Android APP Development Final Project
 
 ## 【組別】
 第4組
@@ -45,4 +45,5 @@ Goo Goo Morning
 詳見presentation資料夾中的Goo_Goo_Morning.pptx檔案
 
 ## 【DEMO影片】
-詳見presentation資料夾中的???檔案
+https://youtu.be/YGWiYz_UDCA
+

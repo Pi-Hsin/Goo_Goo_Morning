@@ -1,4 +1,4 @@
-﻿# Android APP Development Final Project
+﻿# NCKU 107_Android APP Development Final Project
 
 ## 【組別】
 第4組
@@ -33,13 +33,13 @@ Goo Goo Morning
 * DEMO影片剪輯
 
 **〈田晴〉**
-* 製作導覽頁介紹
-* 主畫面至各其他頁面之連接 
+* 實作導覽頁介紹
+* 實作主畫面，以及主畫面至各其他頁面之整合連接 
 
 **〈郭芷辰〉**
-* 實作多鬧鐘收、發、取消廣播、響鈴(UI、java)
-* 實作一次性、重複鬧鐘功能
-* 主畫面與其他頁面連接
+* 實作多鬧鐘收、發、取消廣播(UI、java)
+* 實作一次性、重複鬧鐘功能，鬧鐘遊戲中之響鈴、震動
+* 主畫面與其他頁面之整合連接
 
 ## 【報告PPT】
 詳見presentation資料夾中的Goo_Goo_Morning.pptx檔案

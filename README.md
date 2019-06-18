@@ -47,3 +47,5 @@ Goo Goo Morning
 ## 【DEMO影片】
 https://youtu.be/YGWiYz_UDCA
 
+## 【APK】
+https://github.com/jessica486424/Goo_Goo_Morning/blob/master/app-debug.apk
